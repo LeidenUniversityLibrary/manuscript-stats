@@ -7,7 +7,7 @@ language and start and end indication. It produces a new CSV file that contains 
 each text, correcting for sides that contain multiple texts.
 
 It depends on [pandas](https://pandas.pydata.org/) for working with CSV files and doing the analyses.
-The included [Jupyter]() notebook is the first proof of concept.
+The included [Jupyter](https://jupyter.org/) notebook is the first proof of concept.
 
 ## Installation
 
@@ -15,11 +15,20 @@ The code doesn't need to be installed, other than downloaded to a suitable locat
 
 ### Use Python 3 in a virtualenv
 
-To prevent interference with existing Python 3 installations, you should create a `virtualenv` for this project.
+To prevent interference with existing Python 3 installations, you should create a `virtualenv` for this project. This
+example creates a virtualenv in `~/virtualenvs/` called `manuscript-stats`:
+
+```bash
+virtualenv ~/virtualenvs/manuscript-stats
+source ~/virtualenvs/manuscript-stats/bin/activate
+```
+
+In your git tree, clone the repository and install the required dependencies:
 
 ```bash
 git clone https://github.com/LeidenUniversityLibraries/manuscript-stats.git
 cd manuscript-stats/
+pip install -r requirements.txt
 ```
 
 ## Usage
