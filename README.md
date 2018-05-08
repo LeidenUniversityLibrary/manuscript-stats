@@ -9,6 +9,10 @@ each text, correcting for sides that contain multiple texts.
 It depends on [pandas](https://pandas.pydata.org/) for working with CSV files and doing the analyses.
 The included [Jupyter](https://jupyter.org/) notebook is the first proof of concept.
 
+## Character encodings
+
+This programme tries to auto-detect the input character encoding using the `chardet` library and writes output using the UTF-8 encoding.
+
 ## Installation
 
 The code doesn't need to be installed, other than downloaded to a suitable location. You may need to install dependencies.

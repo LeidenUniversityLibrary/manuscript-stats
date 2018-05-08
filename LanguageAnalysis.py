@@ -9,6 +9,7 @@ import pandas as pd
 from collections import defaultdict
 from glob import glob
 from pathlib import Path
+import chardet
 
 # Going from folio side ID to an ordinal page number helps calculate the number of pages.
 # 
@@ -70,7 +71,11 @@ def process_manuscript(filename):
     output_dir = parent_dir / "output"
     output_dir.mkdir(exist_ok=True)
 
-    mss = pd.read_csv(filename)
+    mss = None
+    with open(filename, 'rb') as input_file:
+        detected_encoding = chardet.detect(input_file.read())
+        print("Detected encoding: {}".format(detected_encoding['encoding'].lower()))
+        mss = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower())
     mss = mss.apply(fs2o, axis=1)
 
     sides_languages = defaultdict(list)
@@ -81,14 +86,17 @@ def process_manuscript(filename):
 
     sorted(sides_languages.items())
     mss = mss.apply(count_sides_better, axis=1, sides_languages=sides_languages)
-    mss.to_csv(output_dir / file, index=False)
+    mss.to_csv(output_dir / file, index=False, encoding="utf-8")
     grouped_by_language = mss.groupby('language')
     total_sides = mss['corrected_total_sides'].sum()
 
-    grouped_by_language['corrected_total_sides'].sum()
+    # grouped_by_language['corrected_total_sides'].sum()
 
+    # Summarise the use of languages and write the absolute number and ratio of pages per language
+    # to a new CSV file
     sides_per_language = grouped_by_language.agg({'corrected_total_sides': sum})
     sides_per_language['ratio'] = sides_per_language['corrected_total_sides'].apply(lambda x: x / total_sides * 100)
+    sides_per_language.to_csv(output_dir / file.replace("contents", "languages"), encoding="utf-8")
 
 
 def main():
