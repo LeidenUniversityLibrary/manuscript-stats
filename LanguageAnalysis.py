@@ -33,6 +33,8 @@ import chardet
 
 def folio_side_to_ordinal(folio, recto_verso):
     """Calculate the ordinal page number from folio number and recto/verso indication"""
+    if isna(recto_verso):
+        return folio
     o = folio * 2
     if recto_verso == 'r':
         o -= 1
@@ -42,6 +44,9 @@ def folio_side_to_ordinal(folio, recto_verso):
 def fs2o(ser):
     """Add fields to series that contain start and end ordinal page numbers"""
     ser['ordinal_start'] = folio_side_to_ordinal(ser['start_folio'], ser['start_side'])
+    if pd.isna(ser['end_folio']):
+        ser['end_folio'] = ser['start_folio']
+        ser['end_side'] = ser['start_side']
     ser['ordinal_end'] = folio_side_to_ordinal(ser['end_folio'], ser['end_side'])
     return ser
 
