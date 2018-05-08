@@ -33,8 +33,6 @@ import chardet
 
 def folio_side_to_ordinal(folio, recto_verso):
     """Calculate the ordinal page number from folio number and recto/verso indication"""
-    if isna(recto_verso):
-        return folio
     o = folio * 2
     if recto_verso == 'r':
         o -= 1
@@ -43,11 +41,22 @@ def folio_side_to_ordinal(folio, recto_verso):
 
 def fs2o(ser):
     """Add fields to series that contain start and end ordinal page numbers"""
-    ser['ordinal_start'] = folio_side_to_ordinal(ser['start_folio'], ser['start_side'])
+    if pd.isna(ser['start_side']):
+        print("already ordinal")
+        ser['ordinal_start'] = ser['start_folio']
+        ser['ordinal_end'] = ser['end_folio']
+    else:
+        ser['ordinal_start'] = folio_side_to_ordinal(ser['start_folio'], ser['start_side'])
+        ser['ordinal_end'] = folio_side_to_ordinal(ser['end_folio'], ser['end_side'])
+    return ser
+
+
+def fix_range_ends(ser):
+    """If no end of range is specified, copy the beginning of the range"""
     if pd.isna(ser['end_folio']):
+        print("End of range is missing - copying from beginning of range")
         ser['end_folio'] = ser['start_folio']
         ser['end_side'] = ser['start_side']
-    ser['ordinal_end'] = folio_side_to_ordinal(ser['end_folio'], ser['end_side'])
     return ser
 
 
@@ -81,6 +90,7 @@ def process_manuscript(filename):
         detected_encoding = chardet.detect(input_file.read())
         print("Detected encoding: {}".format(detected_encoding['encoding'].lower()))
         mss = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower())
+    mss = mss.apply(fix_range_ends, axis=1)
     mss = mss.apply(fs2o, axis=1)
 
     sides_languages = defaultdict(list)
