@@ -11,6 +11,7 @@ from glob import glob
 from pathlib import Path
 import chardet
 
+
 # Going from folio side ID to an ordinal page number helps calculate the number of pages.
 # 
 # - 1r = 1
@@ -19,7 +20,6 @@ import chardet
 # - 2v = 4
 # 
 # etc. So multiply by 2 and subtract 1 if there's an `r` in the folio side ID.
-
 
 
 # But these numbers do not account for sides with two or more texts – those sides count as 1 for each text.
@@ -33,6 +33,8 @@ import chardet
 
 def folio_side_to_ordinal(folio, recto_verso):
     """Calculate the ordinal page number from folio number and recto/verso indication"""
+    if folio < 1:
+        raise NotImplementedError()
     o = folio * 2
     if recto_verso == 'r':
         o -= 1
@@ -42,7 +44,6 @@ def folio_side_to_ordinal(folio, recto_verso):
 def fs2o(ser):
     """Add fields to series that contain start and end ordinal page numbers"""
     if pd.isna(ser['start_side']):
-        print("already ordinal")
         ser['ordinal_start'] = ser['start_folio']
         ser['ordinal_end'] = ser['end_folio']
     else:
@@ -54,7 +55,6 @@ def fs2o(ser):
 def fix_range_ends(ser):
     """If no end of range is specified, copy the beginning of the range"""
     if pd.isna(ser['end_folio']):
-        print("End of range is missing - copying from beginning of range")
         ser['end_folio'] = ser['start_folio']
         ser['end_side'] = ser['start_side']
     return ser
@@ -88,7 +88,6 @@ def process_manuscript(filename):
     mss = None
     with open(filename, 'rb') as input_file:
         detected_encoding = chardet.detect(input_file.read())
-        print("Detected encoding: {}".format(detected_encoding['encoding'].lower()))
         mss = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower())
     mss = mss.apply(fix_range_ends, axis=1)
     mss = mss.apply(fs2o, axis=1)
@@ -113,16 +112,33 @@ def process_manuscript(filename):
     sides_per_language['ratio'] = sides_per_language['corrected_total_sides'].apply(lambda x: x / total_sides * 100)
     sides_per_language.to_csv(output_dir / file.replace("contents", "languages"), encoding="utf-8")
 
+    return mss, sides_per_language
+
 
 def main():
-    for filename in glob('data/contents_*.csv'):
+    files = list(glob('data/contents_*.csv'))
+    contents_frames = []
+    languages_frames = []
+    for filename in files:
         print("Working on", filename)
         try:
-            process_manuscript(filename)
+            frames = process_manuscript(filename)
+            contents_frames.append(frames[0])
+            languages_frames.append(frames[1])
             print("Done")
         except Exception as e:
             print(e)
+    all_mss = pd.concat(contents_frames, keys=files, names=["file"])
+    all_mss.to_csv('data/output/all_contents.csv', encoding="utf-8")
 
+    all_languages = pd.concat(languages_frames, keys=files, names=["file"])
+
+    all_languages.reset_index(inplace=True)
+    print(all_languages.head())
+    all_languages.to_csv("data/output/all_languages.csv", encoding="utf-8")
+    all_langs_pivot = all_languages.pivot(index="file", columns="language")
+    print(all_langs_pivot.head())
+    all_langs_pivot.to_csv("data/output/all_langs_pivot.csv", encoding="utf-8")
 
 
 if __name__ == '__main__':
