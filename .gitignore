@@ -1,2 +1,7 @@
 .idea/
 .ipynb_checkpoints/
+data/*.csv
+.DS_Store
+__pycache__/
+.cache/
+.pytest_cache/
