@@ -34,4 +34,4 @@ Lecturer of Medieval English and Medieval French Literature
 Leiden University
 
 
-See the [manuscripts]({% link manuscripts.html %}) !
+See the [manuscripts]({{ site.baseurl }}{% link manuscripts.html %}) !

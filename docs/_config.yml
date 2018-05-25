@@ -17,7 +17,7 @@ title: Manuscripts
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   Data about manuscripts
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/manuscript-stats" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: bencomp
 github_username:  bencomp
