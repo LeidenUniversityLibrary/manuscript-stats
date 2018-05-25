@@ -10,7 +10,7 @@ from collections import defaultdict
 from glob import glob
 from pathlib import Path
 import chardet
-
+import roman
 
 # Going from folio side ID to an ordinal page number helps calculate the number of pages.
 # 
@@ -33,9 +33,18 @@ import chardet
 
 def folio_side_to_ordinal(folio, recto_verso):
     """Calculate the ordinal page number from folio number and recto/verso indication"""
+    was_roman = False
+    if type(folio) == str:
+        try:
+            folio = roman.fromRoman(folio.upper())
+            was_roman = True
+        except:
+            folio = int(folio)
     if folio < 1:
         raise NotImplementedError()
     o = folio * 2
+    if was_roman:
+        o += 100000
     if recto_verso == 'r':
         o -= 1
     return o
@@ -60,16 +69,11 @@ def fix_range_ends(ser):
     return ser
 
 
-def count_sides_better(ser, sides_languages=None):
+def count_sides(ser, sides_languages=None):
     if sides_languages is None:
         sides_languages = {}
-    ser['count_in_between'] = max(ser['ordinal_end'] - 1 - ser['ordinal_start'], 0)
-    ser['count_start'] = 1 / len(sides_languages[ser['ordinal_start']])
-    ser['count_end'] = 1 / len(sides_languages[ser['ordinal_end']])
-    ser['correction'] = 0
-    if ser['ordinal_start'] == ser['ordinal_end']:
-        ser['correction'] -= ser['count_end']
-    ser['corrected_total_sides'] = ser['count_in_between'] + ser['count_start'] + ser['count_end'] + ser['correction']
+    values = [1 / len(sides_languages[p]) for p in range(ser['ordinal_start'], ser['ordinal_end']+1)]
+    ser['corrected_total_sides'] = sum(values)
     return ser
 
 
@@ -77,6 +81,13 @@ def count_sides_better(ser, sides_languages=None):
 
 # To calculate the total sides and percentages for each language we need to group the rows by language.
 # We also need the total number of sides.
+
+def get_sides_languages(mss):
+    sides_languages = defaultdict(list)
+    for row_index, text in mss.iterrows():
+        for page in range(text['ordinal_start'], text['ordinal_end']+1):
+            sides_languages[page].append(text['language'])
+    return sides_languages
 
 
 def process_manuscript(filename):
@@ -88,23 +99,19 @@ def process_manuscript(filename):
     mss = None
     with open(filename, 'rb') as input_file:
         detected_encoding = chardet.detect(input_file.read())
-        mss = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower())
+        mss = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower(), usecols=[0, 1, 2, 3, 4, 5, 6], dtype={'item': int, 'title': str, 'language': str, 'start_folio': str, 'start_side': str, 'end_folio': str, 'end_side': str}, na_values=[""], error_bad_lines=False)
+    mss = mss.dropna(how='all')
+    mss['start_folio'] = pd.to_numeric(mss['start_folio'], errors='ignore')
+    mss['end_folio'] = pd.to_numeric(mss['end_folio'], errors='ignore')
     mss = mss.apply(fix_range_ends, axis=1)
     mss = mss.apply(fs2o, axis=1)
 
-    sides_languages = defaultdict(list)
-    for row_index, text in mss.iterrows():
-        sides_languages[text['ordinal_start']].append(text['language'])
-        if text['ordinal_start'] != text['ordinal_end']:
-            sides_languages[text['ordinal_end']].append(text['language'])
+    sides_languages = get_sides_languages(mss)
 
-    sorted(sides_languages.items())
-    mss = mss.apply(count_sides_better, axis=1, sides_languages=sides_languages)
+    mss = mss.apply(count_sides, axis=1, sides_languages=sides_languages)
     mss.to_csv(output_dir / file, index=False, encoding="utf-8")
     grouped_by_language = mss.groupby('language')
     total_sides = mss['corrected_total_sides'].sum()
-
-    # grouped_by_language['corrected_total_sides'].sum()
 
     # Summarise the use of languages and write the absolute number and ratio of pages per language
     # to a new CSV file
