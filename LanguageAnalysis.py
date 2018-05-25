@@ -90,26 +90,50 @@ def get_sides_languages(mss):
     return sides_languages
 
 
+def save_as_html(filename, mss, title, for_jekyll=True):
+    """Save a DataFrame as HTML in the specified filename, by default with basic Jekyll metadata"""
+    with pd.option_context('display.max_colwidth', -1):
+        output = mss.to_html(index=False, border=0)
+    if for_jekyll:
+        # print("Title: {0}".format(title))
+        output = "---\ntitle: Contents of manuscript {0}\nlayout: details\nms_id: {0}\n---\n".format(title) + output
+    with open(filename, 'w', encoding="utf-8") as f:
+        f.write(output)
+
+
 def process_manuscript(filename):
     file = Path(filename).name
     parent_dir = Path(filename).parent
     output_dir = parent_dir / "output"
     output_dir.mkdir(exist_ok=True)
 
+    # print("Trying to open")
     mss = None
     with open(filename, 'rb') as input_file:
         detected_encoding = chardet.detect(input_file.read())
         mss = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower(), usecols=[0, 1, 2, 3, 4, 5, 6], dtype={'item': int, 'title': str, 'language': str, 'start_folio': str, 'start_side': str, 'end_folio': str, 'end_side': str}, na_values=[""], error_bad_lines=False)
+    # print("Dropping empty rows")
     mss = mss.dropna(how='all')
+    # print("Fixing folio numbers")
+    mss = mss.apply(fix_range_ends, axis=1)
     mss['start_folio'] = pd.to_numeric(mss['start_folio'], errors='ignore')
     mss['end_folio'] = pd.to_numeric(mss['end_folio'], errors='ignore')
-    mss = mss.apply(fix_range_ends, axis=1)
+    # print("Converting to ordinal numbers")
     mss = mss.apply(fs2o, axis=1)
 
     sides_languages = get_sides_languages(mss)
 
+    # print("Count!")
     mss = mss.apply(count_sides, axis=1, sides_languages=sides_languages)
     mss.to_csv(output_dir / file, index=False, encoding="utf-8")
+
+    # print("Save to HTML")
+    base_name = Path(filename).stem
+    title = base_name.split('_')[1]
+    contents_filename = "_".join(base_name.split('_')[0:2])
+    # print(contents_filename)
+    save_as_html("docs/contents/{0}.html".format(contents_filename), mss, title)
+    # print("Summarise")
     grouped_by_language = mss.groupby('language')
     total_sides = mss['corrected_total_sides'].sum()
 
@@ -134,7 +158,7 @@ def main():
             languages_frames.append(frames[1])
             print("Done")
         except Exception as e:
-            print(e)
+            print("ERROR in {0}: {1}".format(filename, e))
     all_mss = pd.concat(contents_frames, keys=files, names=["file"])
     all_mss.to_csv('data/output/all_contents.csv', encoding="utf-8")
 
