@@ -73,7 +73,7 @@ def count_sides(ser, sides_languages=None):
     if sides_languages is None:
         sides_languages = {}
     values = [1 / len(sides_languages[p]) for p in range(ser['ordinal_start'], ser['ordinal_end']+1)]
-    ser['corrected_total_sides'] = sum(values)
+    ser['total_sides'] = sum(values)
     return ser
 
 
@@ -137,12 +137,12 @@ def process_manuscript(filename):
     save_as_html("docs/_contents/{0}.html".format(contents_filename), mss, title)
     # print("Summarise")
     grouped_by_language = mss.groupby('language')
-    total_sides = mss['corrected_total_sides'].sum()
+    total_sides = mss['total_sides'].sum()
 
     # Summarise the use of languages and write the absolute number and ratio of pages per language
     # to a new CSV file
-    sides_per_language = grouped_by_language.agg({'corrected_total_sides': sum})
-    sides_per_language['ratio'] = sides_per_language['corrected_total_sides'].apply(lambda x: x / total_sides * 100)
+    sides_per_language = grouped_by_language.agg({'total_sides': sum})
+    sides_per_language['percentage'] = sides_per_language['total_sides'].apply(lambda x: x / total_sides * 100)
     sides_per_language.to_csv(output_dir / file.replace("contents", "languages"), encoding="utf-8")
 
     return mss, sides_per_language
@@ -170,7 +170,7 @@ def main():
     print(all_languages.head())
     all_languages.to_csv("data/output/all_languages.csv", encoding="utf-8")
     all_langs_pivot = all_languages.pivot(index="file", columns="language")
-    all_langs_pivot.columns = [' '.join(col).strip() for col in all_langs_pivot.columns.values]
+    all_langs_pivot.columns = ['_'.join(col).strip() for col in all_langs_pivot.columns.values]
     print(all_langs_pivot.head())
     all_langs_pivot.to_csv("data/output/all_langs_pivot.csv", encoding="utf-8")
 
