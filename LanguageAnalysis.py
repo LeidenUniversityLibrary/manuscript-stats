@@ -114,6 +114,8 @@ def process_manuscript(filename):
         mss = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower(), usecols=[0, 1, 2, 3, 4, 5, 6], dtype={'item': int, 'title': str, 'language': str, 'start_folio': str, 'start_side': str, 'end_folio': str, 'end_side': str}, na_values=[""], error_bad_lines=False)
     # print("Dropping empty rows")
     mss = mss.dropna(how='all')
+    # Remove whitespace from language names
+    mss['language'] = mss['language'].str.strip()
     # print("Fixing folio numbers")
     mss = mss.apply(fix_range_ends, axis=1)
     mss['start_folio'] = pd.to_numeric(mss['start_folio'], errors='ignore')
@@ -132,7 +134,7 @@ def process_manuscript(filename):
     title = base_name.split('_')[1]
     contents_filename = "_".join(base_name.split('_')[0:2])
     # print(contents_filename)
-    save_as_html("docs/contents/{0}.html".format(contents_filename), mss, title)
+    save_as_html("docs/_contents/{0}.html".format(contents_filename), mss, title)
     # print("Summarise")
     grouped_by_language = mss.groupby('language')
     total_sides = mss['corrected_total_sides'].sum()
