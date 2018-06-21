@@ -170,6 +170,7 @@ def main():
     print(all_languages.head())
     all_languages.to_csv("data/output/all_languages.csv", encoding="utf-8")
     all_langs_pivot = all_languages.pivot(index="file", columns="language")
+    all_langs_pivot.columns = [' '.join(col).strip() for col in all_langs_pivot.columns.values]
     print(all_langs_pivot.head())
     all_langs_pivot.to_csv("data/output/all_langs_pivot.csv", encoding="utf-8")
 
