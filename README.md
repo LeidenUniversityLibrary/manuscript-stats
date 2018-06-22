@@ -46,6 +46,16 @@ python LanguageAnalysis.py
 This command prints the name of the file it is working on and creates an output file of the same name in `output/`, if
 the operations succeed. If something went wrong, the error is printed.
 
+### Notes on input files
+
+When you use Microsoft Excel to prepare the CSV files, make sure the files don't have empty lines.
+
+Ranges of Roman numerals are handled by converting to their Arabic equivalents and adding 100000, so that the numbers don't
+clash with the folia numbered in Arabic ranges. This doesn't work when there are multiple ranges of Roman numerals, but in
+this dataset we are not aware of any.
+
+Do not mix folio numbering (`1r`, `3v`) with pagination (`1`, `6`) in one file.
+
 ## Author, licence
 
 Created by Ben Companjen at the Centre for Digital Scholarship, Leiden University Libraries.
