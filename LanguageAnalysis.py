@@ -93,7 +93,7 @@ def get_sides_languages(mss):
 def save_as_html(filename, mss, title, for_jekyll=True):
     """Save a DataFrame as HTML in the specified filename, by default with basic Jekyll metadata"""
     with pd.option_context('display.max_colwidth', -1):
-        output = mss.to_html(index=False, border=0)
+        output = mss.to_html(border=0)
     if for_jekyll:
         # print("Title: {0}".format(title))
         output = "---\ntitle: Contents of manuscript {0}\nlayout: details\nms_id: {0}\n---\n".format(title) + output
@@ -106,14 +106,7 @@ def extract_ms_id(filename):
     return base_name.split('_')[1]
 
 
-def process_manuscript(filename):
-    file = Path(filename).name
-    parent_dir = Path(filename).parent
-    output_dir = parent_dir / "output"
-    output_dir.mkdir(exist_ok=True)
-
-    # print("Trying to open")
-    mss = None
+def load_contents(filename):
     with open(filename, 'rb') as input_file:
         detected_encoding = chardet.detect(input_file.read())
         mss = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower(), index_col=0, usecols=[0, 1, 2, 3, 4, 5, 6], dtype={'item': int, 'title': str, 'language': str, 'start_folio': str, 'start_side': str, 'end_folio': str, 'end_side': str}, na_values=[""], error_bad_lines=False)
@@ -125,7 +118,19 @@ def process_manuscript(filename):
     mss = mss.apply(fix_range_ends, axis=1)
     mss['start_folio'] = pd.to_numeric(mss['start_folio'], errors='ignore')
     mss['end_folio'] = pd.to_numeric(mss['end_folio'], errors='ignore')
-    # print("Converting to ordinal numbers")
+    return mss
+
+
+def process_manuscript(filename):
+    file = Path(filename).name
+    parent_dir = Path(filename).parent
+    output_dir = parent_dir / "output"
+    output_dir.mkdir(exist_ok=True)
+
+    # print("Trying to open")
+    mss = load_contents(filename)
+
+    # Convert folio + side to ordinal numbers
     mss = mss.apply(fs2o, axis=1)
 
     sides_languages = get_sides_languages(mss)
