@@ -121,6 +121,11 @@ def load_contents(filename):
     return mss
 
 
+def merge_analysis_results(all_manuscripts, all_langs_pivot):
+    result = all_manuscripts.join(all_langs_pivot, how='outer')
+    result.to_csv("data/output/all_manuscripts.csv", encoding="utf-8")
+
+
 def process_manuscript(filename):
     file = Path(filename).name
     parent_dir = Path(filename).parent
@@ -182,6 +187,8 @@ def main():
     all_langs_pivot.columns = ['_'.join(col).strip() for col in all_langs_pivot.columns.values]
     print(all_langs_pivot.head())
     all_langs_pivot.to_csv("data/output/all_langs_pivot.csv", encoding="utf-8")
+    ms_descriptions = pd.read_csv("docs/_data/manuscripts.csv", index_col=0, na_values=[""], error_bad_lines=False)
+    merge_analysis_results(ms_descriptions, all_langs_pivot)
 
 
 if __name__ == '__main__':
