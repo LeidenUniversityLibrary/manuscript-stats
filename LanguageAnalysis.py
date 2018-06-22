@@ -111,7 +111,7 @@ def process_manuscript(filename):
     mss = None
     with open(filename, 'rb') as input_file:
         detected_encoding = chardet.detect(input_file.read())
-        mss = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower(), usecols=[0, 1, 2, 3, 4, 5, 6], dtype={'item': int, 'title': str, 'language': str, 'start_folio': str, 'start_side': str, 'end_folio': str, 'end_side': str}, na_values=[""], error_bad_lines=False)
+        mss = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower(), index_col=0, usecols=[0, 1, 2, 3, 4, 5, 6], dtype={'item': int, 'title': str, 'language': str, 'start_folio': str, 'start_side': str, 'end_folio': str, 'end_side': str}, na_values=[""], error_bad_lines=False)
     # print("Dropping empty rows")
     mss = mss.dropna(how='all')
     # Remove whitespace from language names
@@ -127,7 +127,7 @@ def process_manuscript(filename):
 
     # print("Count!")
     mss = mss.apply(count_sides, axis=1, sides_languages=sides_languages)
-    mss.to_csv(output_dir / file, index=False, encoding="utf-8")
+    mss.to_csv(output_dir / file, encoding="utf-8")
 
     # print("Save to HTML")
     base_name = Path(filename).stem
@@ -168,7 +168,7 @@ def main():
 
     all_languages.reset_index(inplace=True)
     print(all_languages.head())
-    all_languages.to_csv("data/output/all_languages.csv", encoding="utf-8")
+    all_languages.to_csv("data/output/all_languages.csv", index=False, encoding="utf-8")
     all_langs_pivot = all_languages.pivot(index="file", columns="language")
     all_langs_pivot.columns = ['_'.join(col).strip() for col in all_langs_pivot.columns.values]
     print(all_langs_pivot.head())
