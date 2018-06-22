@@ -35,3 +35,5 @@ Leiden University
 
 
 See the [manuscripts]({{ site.baseurl }}{% link manuscripts.html %}) !
+
+See the [language use]({{ site.baseurl }}{% link manuscripts-stats.html %}) !

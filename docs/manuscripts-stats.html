@@ -1,0 +1,43 @@
+---
+title: All manuscripts with language statistics
+layout: default
+---
+
+        <table>
+            <thead>
+                <tr>
+                    <th>MS_ID</th>
+                    <th>Location</th>
+                    <th>Collection</th>
+                    <th>Reference</th>
+                    <th>Headnote</th>
+                    <th>MS_Date</th>
+                    <th>Folia</th>
+                    <th>Notes</th>
+                    <th>Sources</th>
+                    <th>pages in English (%)</th>
+                    <th>pages in French (%)</th>
+                    <th>pages in Latin (%)</th>
+                    <th>pages in Other (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in site.data.all_manuscripts %}
+                <tr>
+                    <td><a href="{{site.baseurl}}/contents/contents_{{ m.MS_ID }}.html">{{ m.MS_ID }}</a></td>
+                    <td>{{m.Location }}</td>
+                    <td>{{m.Collection }}</td>
+                    <td>{{m.Reference }}</td>
+                    <td>{{m.Headnote }}</td>
+                    <td>{{m.MS_Date }}</td>
+                    <td>{{m.Folia }}</td>
+                    <td>{{m.Notes }}</td>
+                    <td>{{m.MS_Sources }}</td>
+                    <td>{{m.total_sides_English }} ({{ m.percentage_English }} %)</td>
+                    <td>{{m.total_sides_French }} ({{ m.percentage_French }} %)</td>
+                    <td>{{m.total_sides_Latin }} ({{ m.percentage_Latin }} %)</td>
+                    <td>{{m.total_sides_Other }} ({{ m.percentage_Other }} %)</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
