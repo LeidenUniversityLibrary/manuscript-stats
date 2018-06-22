@@ -101,6 +101,11 @@ def save_as_html(filename, mss, title, for_jekyll=True):
         f.write(output)
 
 
+def extract_ms_id(filename):
+    base_name = Path(filename).stem
+    return base_name.split('_')[1]
+
+
 def process_manuscript(filename):
     file = Path(filename).name
     parent_dir = Path(filename).parent
@@ -130,11 +135,8 @@ def process_manuscript(filename):
     mss.to_csv(output_dir / file, encoding="utf-8")
 
     # print("Save to HTML")
-    base_name = Path(filename).stem
-    title = base_name.split('_')[1]
-    contents_filename = "_".join(base_name.split('_')[0:2])
-    # print(contents_filename)
-    save_as_html("docs/_contents/{0}.html".format(contents_filename), mss, title)
+    ms_id = extract_ms_id(filename)
+    save_as_html("docs/_contents/contents_{0}.html".format(ms_id), mss, ms_id)
     # print("Summarise")
     grouped_by_language = mss.groupby('language')
     total_sides = mss['total_sides'].sum()
@@ -145,11 +147,12 @@ def process_manuscript(filename):
     sides_per_language['percentage'] = sides_per_language['total_sides'].apply(lambda x: x / total_sides * 100)
     sides_per_language.to_csv(output_dir / file.replace("contents", "languages"), encoding="utf-8")
 
-    return mss, sides_per_language
+    return mss, sides_per_language, ms_id
 
 
 def main():
     files = list(glob('data/contents_*.csv'))
+    ms_identifiers = []
     contents_frames = []
     languages_frames = []
     for filename in files:
@@ -158,18 +161,19 @@ def main():
             frames = process_manuscript(filename)
             contents_frames.append(frames[0])
             languages_frames.append(frames[1])
+            ms_identifiers.append(frames[2])
             print("Done")
         except Exception as e:
             print("ERROR in {0}: {1}".format(filename, e))
-    all_mss = pd.concat(contents_frames, keys=files, names=["file"])
+    all_mss = pd.concat(contents_frames, keys=ms_identifiers, names=["MS_ID"])
     all_mss.to_csv('data/output/all_contents.csv', encoding="utf-8")
 
-    all_languages = pd.concat(languages_frames, keys=files, names=["file"])
+    all_languages = pd.concat(languages_frames, keys=ms_identifiers, names=["MS_ID"])
 
     all_languages.reset_index(inplace=True)
     print(all_languages.head())
     all_languages.to_csv("data/output/all_languages.csv", index=False, encoding="utf-8")
-    all_langs_pivot = all_languages.pivot(index="file", columns="language")
+    all_langs_pivot = all_languages.pivot(index="MS_ID", columns="language")
     all_langs_pivot.columns = ['_'.join(col).strip() for col in all_langs_pivot.columns.values]
     print(all_langs_pivot.head())
     all_langs_pivot.to_csv("data/output/all_langs_pivot.csv", encoding="utf-8")
