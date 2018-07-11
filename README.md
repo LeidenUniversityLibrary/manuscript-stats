@@ -37,13 +37,13 @@ pip install -r requirements.txt
 
 ## Usage
 
-Copy your CSV files to `data/`, using the filename pattern `contents_XXX.csv` (where XXX is an identifier, like a number).
+Copy your CSV files to `data/input/`, using the filename pattern `contents_XXX.csv` (where XXX is an identifier, like a number).
 
 ```bash
 python LanguageAnalysis.py
 ```
 
-This command prints the name of the file it is working on and creates an output file of the same name in `output/`, if
+This command prints the name of the file it is working on and creates an output file of the same name in `data/output/`, if
 the operations succeed. If something went wrong, the error is printed.
 
 ### Notes on input files

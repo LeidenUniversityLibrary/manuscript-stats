@@ -161,7 +161,7 @@ def process_manuscript(filename):
 
 
 def main():
-    files = list(glob('data/contents_*.csv'))
+    files = list(glob('data/input/contents_*.csv'))
     ms_identifiers = []
     contents_frames = []
     languages_frames = []

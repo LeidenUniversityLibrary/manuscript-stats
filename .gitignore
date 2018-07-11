@@ -1,6 +1,6 @@
 .idea/
 .ipynb_checkpoints/
-data/*.csv
+data/*/*.csv
 .DS_Store
 __pycache__/
 .cache/
