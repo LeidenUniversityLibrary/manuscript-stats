@@ -3,3 +3,4 @@ pytest
 pandas
 pystache
 chardet
+pyyaml

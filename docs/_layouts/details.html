@@ -1,14 +1,56 @@
-<!DOCTYPE html>
-<html>
-    <head><title>{{ page.title }}</title></head>
-    <body>
-        <a href="{{site.baseurl}}/">Home</a> – <a href="{{site.baseurl}}{% link manuscripts.html %}">All manuscripts</a> – <a href="{{site.baseurl}}{% link manuscripts-stats.html %}">All manuscripts with statistics</a>
-        <h1>{{ page.title }}</h1>
-        <dl>
-            <dt>Manuscript №</dt>
-            <dd>{{ page.ms_id }}</dd>
-        </dl>
+{% include header.html %}
+<h1>{{ page.title }}</h1>
+<dl>
+    <dt>Manuscript №</dt>
+    <dd>{{ page.ms_id }}</dd>
+    <dt>location</dt>
+    <dd>{{page.location}}</dd>
+    <dt>Collection</dt>
+    <dd>{{ page.Collection }}</dd>
+    <dt>Reference</dt>
+    <dd>{{ page.Reference }}</dd>
+    <dt>Headnote</dt>
+    <dd>{{ page.Headnote }}</dd>
+    <dt>MS_Date</dt>
+    <dd>{{ page.MS_Date }}</dd>
+    <dt>Folia</dt>
+    <dd>{{ page.Folia }}</dd>
+    <dt>Place_of_production</dt>
+    <dd>{{ page.Place_of_production }}</dd>
+    <dt>Produced_for</dt>
+    <dd>{{ page.Produced_for }}</dd>
+    <dt>Notes</dt>
+    <dd>{{ page.Notes }}</dd>
+    <dt>MS_Sources</dt>
+    {% for source in page.MS_Sources %}
+    <dd>{{ source.text }} {{ source.url }}</dd>
+    {% endfor %}
+</dl>
 
-        {{ content }}
-    </body>
-</html>
+<table border="0" class="dataframe">
+  <thead>
+    <tr>
+      <th>item</th>
+      <th>title</th>
+      <th>language</th>
+      <th>start_folio (ordinal)</th>
+      <th>end_folio (ordinal)</th>
+      <th>total_sides</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for text in page.contents %}
+    <tr>
+      <th>{{ text.item }}</th>
+      <td>{{ text.title }}</td>
+      <td>{{ text.language }}</td>
+      <td>{{ text.start_folio }}{{ text.start_side }} ({{ text.ordinal_start }})</td>
+      <td>{{ text.end_folio }}{{ text.end_side }} ({{ text.ordinal_end }})</td>
+      <td>{{ text.total_sides }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{{ content }}
+
+{% include footer.html %}
