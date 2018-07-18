@@ -11,6 +11,7 @@ from glob import glob
 from pathlib import Path
 import chardet
 import roman
+import yaml
 
 # Going from folio side ID to an ordinal page number helps calculate the number of pages.
 # 
@@ -101,6 +102,25 @@ def save_as_html(filename, mss, title, for_jekyll=True):
         f.write(output)
 
 
+def save_as_yaml_md(data, filename):
+    """Save details for a manuscript in the YAML metadata of a Markdown file"""
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write("---\n")
+        yaml.dump(data, f, default_flow_style=False)
+        f.write("\n---\n")
+
+
+def convert_ms_to_dict(ser):
+    """Create a dict of the cataloguing info and contents for a manuscript"""
+    # print(ser.name)
+    # print(ser.index)
+    data = ser.to_dict()
+    # Split sources on ' ; '
+    # If there is a contents file for this manuscript, include its contents
+    save_as_yaml_md(data, "data/output/ms_" + ser.name + ".md")
+    # return data
+
+
 def extract_ms_id(filename):
     base_name = Path(filename).stem
     return base_name.split('_')[1]
@@ -123,12 +143,12 @@ def load_contents(filename):
 
 def merge_analysis_results(all_manuscripts, all_langs_pivot):
     result = all_manuscripts.join(all_langs_pivot, how='outer')
-    result.to_csv("data/output/all_manuscripts.csv", encoding="utf-8")
+    return result
 
 
 def process_manuscript(filename):
     file = Path(filename).name
-    parent_dir = Path(filename).parent
+    parent_dir = Path(filename).parent.parent
     output_dir = parent_dir / "output"
     output_dir.mkdir(exist_ok=True)
 
@@ -161,6 +181,9 @@ def process_manuscript(filename):
 
 
 def main():
+    # Read list of manuscripts
+    ms_descriptions = pd.read_csv("docs/_data/manuscripts.csv", index_col=0, na_values=[""], error_bad_lines=False)
+
     files = list(glob('data/input/contents_*.csv'))
     ms_identifiers = []
     contents_frames = []
@@ -187,8 +210,9 @@ def main():
     all_langs_pivot.columns = ['_'.join(col).strip() for col in all_langs_pivot.columns.values]
     print(all_langs_pivot.head())
     all_langs_pivot.to_csv("data/output/all_langs_pivot.csv", encoding="utf-8")
-    ms_descriptions = pd.read_csv("docs/_data/manuscripts.csv", index_col=0, na_values=[""], error_bad_lines=False)
-    merge_analysis_results(ms_descriptions, all_langs_pivot)
+    merged_results = merge_analysis_results(ms_descriptions, all_langs_pivot)
+    merged_results.to_csv("data/output/all_manuscripts.csv", encoding="utf-8")
+    merged_results.apply(convert_ms_to_dict, axis=1)
 
 
 if __name__ == '__main__':
