@@ -115,6 +115,7 @@ def convert_ms_to_dict(ser):
     # print(ser.name)
     # print(ser.index)
     data = ser.to_dict()
+    data["MS_ID"] = ser.name
     # Split sources on ' ; '
     # If there is a contents file for this manuscript, include its contents
     save_as_yaml_md(data, "data/output/ms_" + ser.name + ".md")
@@ -142,7 +143,7 @@ def load_contents(filename):
 
 
 def merge_analysis_results(all_manuscripts, all_langs_pivot):
-    result = all_manuscripts.join(all_langs_pivot, how='outer')
+    result = all_manuscripts.join(all_langs_pivot, how='left')
     return result
 
 
