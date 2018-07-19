@@ -10,7 +10,7 @@ layout: default
                     <th>Location</th>
                     <th>Collection</th>
                     <th>Reference</th>
-                    <th>Headnote</th
+                    <th>Headnote</th>
                     <th>pages in English (%)</th>
                     <th>pages in French (%)</th>
                     <th>pages in Latin (%)</th>
@@ -18,7 +18,7 @@ layout: default
                 </tr>
             </thead>
             <tbody>
-                {% for m in site.data.all_manuscripts %}
+                {% for m in site.data.all_manuscripts_q %}
                 <tr>
                     <td><a href="{{site.baseurl}}/contents/ms_{{ m.MS_ID }}.html">{{ m.MS_ID }}</a></td>
                     <td>{{m.Location }}</td>

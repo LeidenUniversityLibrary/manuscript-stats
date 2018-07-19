@@ -15,7 +15,7 @@ layout: default
                 </tr>
             </thead>
             <tbody>
-                {% for m in site.data.manuscripts %}
+                {% for m in site.data.manuscripts_q %}
                 <tr>
                     <td><a href="{{site.baseurl}}/contents/ms_{{ m.MS_ID }}.html">{{ m.MS_ID }}</a></td>
                     <td>{{m.Location }}</td>
