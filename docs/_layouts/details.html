@@ -1,27 +1,27 @@
 {% include header.html %}
-<h1>{{ page.title }}</h1>
+<h1>Details for manuscript {{ page.MS_ID }}</h1>
 <dl>
     <dt>Manuscript №</dt>
-    <dd>{{ page.ms_id }}</dd>
+    <dd>{{ page.MS_ID }}</dd>
     <dt>location</dt>
-    <dd>{{page.location}}</dd>
+    <dd>{{page.Location}}</dd>
     <dt>Collection</dt>
     <dd>{{ page.Collection }}</dd>
     <dt>Reference</dt>
     <dd>{{ page.Reference }}</dd>
     <dt>Headnote</dt>
     <dd>{{ page.Headnote }}</dd>
-    <dt>MS_Date</dt>
+    <dt>Estimated date of production</dt>
     <dd>{{ page.MS_Date }}</dd>
     <dt>Folia</dt>
     <dd>{{ page.Folia }}</dd>
-    <dt>Place_of_production</dt>
+    <dt>Place of production</dt>
     <dd>{{ page.Place_of_production }}</dd>
-    <dt>Produced_for</dt>
+    <dt>Produced for</dt>
     <dd>{{ page.Produced_for }}</dd>
     <dt>Notes</dt>
     <dd>{{ page.Notes }}</dd>
-    <dt>MS_Sources</dt>
+    <dt>Sources for this record</dt>
     {% for source in page.MS_Sources %}
     <dd>{{ source.text }} {{ source.url }}</dd>
     {% endfor %}

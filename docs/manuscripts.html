@@ -6,18 +6,18 @@ layout: default
         <table>
             <thead>
                 <tr>
-                    <th>MS_ID</th>
+                    <th>Manuscript ID</th>
                     <th>Location</th>
                     <th>Collection</th>
                     <th>Reference</th>
                     <th>Headnote</th>
-                    <th>MS_Date</th>
+                    <th>Approx. date</th>
                 </tr>
             </thead>
             <tbody>
-                {% for m in site.data.manuscripts_q %}
+                {% for m in site.details %}
                 <tr>
-                    <td><a href="{{site.baseurl}}/contents/ms_{{ m.MS_ID }}.html">{{ m.MS_ID }}</a></td>
+                    <td><a href="{{site.baseurl}}/details/ms_{{ m.MS_ID }}.html">{{ m.MS_ID }}</a></td>
                     <td>{{m.Location }}</td>
                     <td>{{m.Collection }}</td>
                     <td>{{m.Reference }}</td>

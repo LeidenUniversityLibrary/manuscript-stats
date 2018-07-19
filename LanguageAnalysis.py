@@ -118,7 +118,7 @@ def convert_ms_to_dict(ser):
     data["MS_ID"] = ser.name
     # Split sources on ' ; '
     # If there is a contents file for this manuscript, include its contents
-    save_as_yaml_md(data, "data/output/ms_" + ser.name + ".md")
+    save_as_yaml_md(data, "docs/_details/ms_" + ser.name + ".md")
     # return data
 
 
@@ -213,6 +213,8 @@ def main():
     all_langs_pivot.to_csv("data/output/all_langs_pivot.csv", encoding="utf-8")
     merged_results = merge_analysis_results(ms_descriptions, all_langs_pivot)
     merged_results.to_csv("data/output/all_manuscripts.csv", encoding="utf-8")
+    fill_values = {'Place_of_production': "",'Produced_for': "",'F_%': 0.,'L_%': 0.,'E_%': 0.,'O_%': 0.,'F_Sides': 0.,'L_Sides': 0.,'E_Sides': 0.,'O_Sides': 0.,'total_sides_English': 0.,'total_sides_French': 0.,'total_sides_Latin': 0.,'total_sides_Other': 0.,'percentage_English': 0.,'percentage_French': 0.,'percentage_Latin': 0.,'percentage_Other': 0.}
+    merged_results.fillna(fill_values, inplace=True)
     merged_results.apply(convert_ms_to_dict, axis=1)
 
 

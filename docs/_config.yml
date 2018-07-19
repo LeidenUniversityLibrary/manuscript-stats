@@ -25,7 +25,15 @@ github_username:  bencomp
 collections:
   contents:
     output: true
+  details:
+    output: true
 
+defaults:
+  - scope:
+      path: ""
+      type: details
+    values:
+      layout: details
 # Build settings
 markdown: kramdown
 # theme: minima

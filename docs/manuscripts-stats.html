@@ -6,7 +6,7 @@ layout: default
         <table>
             <thead>
                 <tr>
-                    <th>MS_ID</th>
+                    <th>Manuscript ID</th>
                     <th>Location</th>
                     <th>Collection</th>
                     <th>Reference</th>
@@ -18,17 +18,17 @@ layout: default
                 </tr>
             </thead>
             <tbody>
-                {% for m in site.data.all_manuscripts_q %}
+                {% for m in site.details %}
                 <tr>
-                    <td><a href="{{site.baseurl}}/contents/ms_{{ m.MS_ID }}.html">{{ m.MS_ID }}</a></td>
+                    <td><a href="{{site.baseurl}}/details/ms_{{ m.MS_ID }}.html">{{ m.MS_ID }}</a></td>
                     <td>{{m.Location }}</td>
                     <td>{{m.Collection }}</td>
                     <td>{{m.Reference }}</td>
                     <td>{{m.Headnote }}</td>
-                    <td>{{m.total_sides_English }} ({{ m.percentage_English }} %)</td>
-                    <td>{{m.total_sides_French }} ({{ m.percentage_French }} %)</td>
-                    <td>{{m.total_sides_Latin }} ({{ m.percentage_Latin }} %)</td>
-                    <td>{{m.total_sides_Other }} ({{ m.percentage_Other }} %)</td>
+                    <td>{{m.total_sides_English | round: 2 }} ({{ m.percentage_English | round: 2 }} %)</td>
+                    <td>{{m.total_sides_French | round: 2 }} ({{ m.percentage_French | round: 2 }} %)</td>
+                    <td>{{m.total_sides_Latin | round: 2 }} ({{ m.percentage_Latin | round: 2 }} %)</td>
+                    <td>{{m.total_sides_Other | round: 2 }} ({{ m.percentage_Other | round: 2 }} %)</td>
                 </tr>
                 {% endfor %}
             </tbody>
