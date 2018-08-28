@@ -23,8 +23,6 @@ twitter_username: bencomp
 github_username:  bencomp
 
 collections:
-  contents:
-    output: true
   details:
     output: true
 
