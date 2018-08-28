@@ -11,8 +11,7 @@ import yaml
 def load_owners(filename: str):
     with open(filename, 'rb') as input_file:
         detected_encoding = chardet.detect(input_file.read())
-        # owners = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower(), index_col=0, usecols=[0, 1, 2, 3, 4, 5, 6], dtype={'item': int, 'title': str, 'language': str, 'start_folio': str, 'start_side': str, 'end_folio': str, 'end_side': str}, na_values=[""], error_bad_lines=False)
-        owners = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower(), index_col=0, na_values=[""], error_bad_lines=False)
+        owners = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower(), index_col=0, dtype={'owner_ID': int, 'owner_descr': str, 'owner_date': str, 'owner_type': str, 'owner_gender': str, 'owner_source': str}, na_values=[""], error_bad_lines=False)
     # print("Dropping empty rows")
     owners = owners.dropna(how='all')
     return owners
@@ -36,24 +35,23 @@ def process_owners(filename: str):
 
     ms_id = extract_ms_id(filename)
 
-
     return owners, ms_id
 
 
 def main():
     files = list(glob('data/input/owner_*.csv'))
     ms_identifiers = []
-    contents_frames = []
+    owners_frames = []
     for filename in files:
         print("Working on", filename)
         try:
             frames = process_owners(filename)
-            contents_frames.append(frames[0])
+            owners_frames.append(frames[0])
             ms_identifiers.append(frames[1])
             print("Done")
         except Exception as e:
             print("ERROR in {0}: {1}".format(filename, e))
-    all_owners = pd.concat(contents_frames, keys=ms_identifiers, names=["MS_ID"])
+    all_owners = pd.concat(owners_frames, keys=ms_identifiers, names=["MS_ID"])
     all_owners.to_csv('data/output/all_owners.csv', encoding="utf-8")
 
 
