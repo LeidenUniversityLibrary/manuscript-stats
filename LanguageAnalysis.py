@@ -51,7 +51,7 @@ def folio_side_to_ordinal(folio, recto_verso):
     return o
 
 
-def fs2o(ser):
+def fs2o(ser: pd.Series):
     """Add fields to series that contain start and end ordinal page numbers"""
     if pd.isna(ser['start_side']):
         ser['ordinal_start'] = ser['start_folio']
@@ -62,7 +62,7 @@ def fs2o(ser):
     return ser
 
 
-def fix_range_ends(ser):
+def fix_range_ends(ser: pd.Series):
     """If no end of range is specified, copy the beginning of the range"""
     if pd.isna(ser['end_folio']):
         ser['end_folio'] = ser['start_folio']
@@ -70,10 +70,10 @@ def fix_range_ends(ser):
     return ser
 
 
-def count_sides(ser, sides_languages=None):
-    if sides_languages is None:
-        sides_languages = {}
-    values = [1 / len(sides_languages[p]) for p in range(ser['ordinal_start'], ser['ordinal_end']+1)]
+def count_pages_for_text(ser: pd.Series, languages_per_page=None):
+    if languages_per_page is None:
+        languages_per_page = {}
+    values = [1 / len(languages_per_page[p]) for p in range(ser['ordinal_start'], ser['ordinal_end'] + 1)]
     ser['total_sides'] = sum(values)
     return ser
 
@@ -83,12 +83,12 @@ def count_sides(ser, sides_languages=None):
 # To calculate the total sides and percentages for each language we need to group the rows by language.
 # We also need the total number of sides.
 
-def get_sides_languages(mss):
-    sides_languages = defaultdict(list)
+def get_languages_per_page(mss: pd.DataFrame):
+    languages_per_page = defaultdict(list)
     for row_index, text in mss.iterrows():
         for page in range(text['ordinal_start'], text['ordinal_end']+1):
-            sides_languages[page].append(text['language'])
-    return sides_languages
+            languages_per_page[page].append(text['language'])
+    return languages_per_page
 
 
 def save_as_html(filename, mss, title, for_jekyll=True):
@@ -102,7 +102,7 @@ def save_as_html(filename, mss, title, for_jekyll=True):
         f.write(output)
 
 
-def save_as_yaml_md(data, filename):
+def save_as_yaml_md(data: dict, filename: str):
     """Save details for a manuscript in the YAML metadata of a Markdown file"""
     with open(filename, 'w', encoding='utf-8') as f:
         f.write("---\n")
@@ -110,7 +110,7 @@ def save_as_yaml_md(data, filename):
         f.write("\n---\n")
 
 
-def convert_ms_to_dict(ser):
+def convert_ms_to_dict(ser: pd.Series):
     """Create a dict of the cataloguing info and contents for a manuscript"""
     # print(ser.name)
     # print(ser.index)
@@ -127,7 +127,7 @@ def extract_ms_id(filename):
     return base_name.split('_')[1]
 
 
-def load_contents(filename):
+def load_contents(filename: str):
     with open(filename, 'rb') as input_file:
         detected_encoding = chardet.detect(input_file.read())
         mss = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower(), index_col=0, usecols=[0, 1, 2, 3, 4, 5, 6], dtype={'item': int, 'title': str, 'language': str, 'start_folio': str, 'start_side': str, 'end_folio': str, 'end_side': str}, na_values=[""], error_bad_lines=False)
@@ -147,7 +147,7 @@ def merge_analysis_results(all_manuscripts, all_langs_pivot):
     return result
 
 
-def process_manuscript(filename):
+def process_manuscript(filename: str):
     file = Path(filename).name
     parent_dir = Path(filename).parent.parent
     output_dir = parent_dir / "output"
@@ -159,10 +159,10 @@ def process_manuscript(filename):
     # Convert folio + side to ordinal numbers
     mss = mss.apply(fs2o, axis=1)
 
-    sides_languages = get_sides_languages(mss)
+    sides_languages = get_languages_per_page(mss)
 
     # print("Count!")
-    mss = mss.apply(count_sides, axis=1, sides_languages=sides_languages)
+    mss = mss.apply(count_pages_for_text, axis=1, languages_per_page=sides_languages)
     mss.to_csv(output_dir / file, encoding="utf-8")
 
     # print("Save to HTML")
