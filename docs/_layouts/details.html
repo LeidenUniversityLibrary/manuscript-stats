@@ -3,7 +3,7 @@
 <dl>
     <dt>Manuscript №</dt>
     <dd>{{ page.MS_ID }}</dd>
-    <dt>location</dt>
+    <dt>Location</dt>
     <dd>{{page.Location}}</dd>
     <dt>Collection</dt>
     <dd>{{ page.Collection }}</dd>
@@ -22,20 +22,21 @@
     <dt>Notes</dt>
     <dd>{{ page.Notes }}</dd>
     <dt>Sources for this record</dt>
-    {% for source in page.MS_Sources %}
-    <dd>{{ source.text }} {{ source.url }}</dd>
+    {% for source in page.sources %}
+    <dd>{% if source contains "http" %}<a href="{{ source }}">{{source}}</a>{% else %}{{ source }}{% endif %}</dd>
     {% endfor %}
 </dl>
 
 <table border="0" class="dataframe">
+    <caption>Contents</caption>
   <thead>
     <tr>
-      <th>item</th>
-      <th>title</th>
-      <th>language</th>
-      <th>start_folio (ordinal)</th>
-      <th>end_folio (ordinal)</th>
-      <th>total_sides</th>
+      <th>Text</th>
+      <th>Title</th>
+      <th>Language</th>
+      <th>Start folio (ordinal)</th>
+      <th>End folio (ordinal)</th>
+      <th>Total pages</th>
     </tr>
   </thead>
   <tbody>
@@ -46,7 +47,33 @@
       <td>{{ text.language }}</td>
       <td>{{ text.start_folio }}{{ text.start_side }} ({{ text.ordinal_start }})</td>
       <td>{{ text.end_folio }}{{ text.end_side }} ({{ text.ordinal_end }})</td>
-      <td>{{ text.total_sides }}</td>
+      <td>{{ text.total_sides | round: 2 }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<table border="0" class="dataframe">
+    <caption>Owners</caption>
+  <thead>
+    <tr>
+      <th>Owner number</th>
+      <th>Owner</th>
+      <th>Period</th>
+      <th>Gender</th>
+      <th>Type</th>
+      <th>Source</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for text in page.owners %}
+    <tr>
+      <th>{{ text.owner_ID }}</th>
+      <td>{{ text.owner_descr }}</td>
+      <td>{{ text.owner_date }}</td>
+      <td>{{ text.owner_gender }}</td>
+      <td>{{ text.owner_type }}</td>
+      <td>{% if text.owner_source contains "http" %}<a href="{{ text.owner_source }}">{{ text.owner_source }}</a>{% else %}{{ text.owner_source }}{% endif %}</td>
     </tr>
   {% endfor %}
   </tbody>
