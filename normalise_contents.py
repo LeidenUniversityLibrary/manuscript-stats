@@ -77,3 +77,59 @@ def load_contents(filename: str):
     mss['start_folio'] = pd.to_numeric(mss['start_folio'], errors='ignore')
     mss['end_folio'] = pd.to_numeric(mss['end_folio'], errors='ignore')
     return mss
+
+
+def extract_ms_id(filename):
+    base_name = Path(filename).stem
+    return base_name.split('_')[1]
+
+
+def process_manuscript(filename: str):
+    file = Path(filename).name
+    parent_dir = Path(filename).parent.parent
+    output_dir = parent_dir / "output"
+    output_dir.mkdir(exist_ok=True)
+
+    # print("Trying to open")
+    mss = load_contents(filename)
+
+    # Convert folio + side to ordinal numbers
+    mss = mss.apply(fs2o, axis=1)
+
+    # sides_languages = get_languages_per_page(mss)
+
+    # print("Count!")
+    # mss = mss.apply(count_pages_for_text, axis=1, languages_per_page=sides_languages)
+    mss.to_csv(output_dir / file, encoding="utf-8")
+
+    # print("Save to HTML")
+    # ms_id = extract_ms_id(filename)
+    # save_as_html("docs/_contents/contents_{0}.html".format(ms_id), mss, ms_id)
+    # print("Summarise")
+    # grouped_by_language = mss.groupby('language')
+    # total_sides = mss['total_sides'].sum()
+
+    # Summarise the use of languages and write the absolute number and ratio of pages per language
+    # to a new CSV file
+    # sides_per_language = grouped_by_language.agg({'total_sides': sum})
+    # sides_per_language['percentage'] = sides_per_language['total_sides'].apply(lambda x: x / total_sides * 100)
+    # sides_per_language.to_csv(output_dir / file.replace("contents", "languages"), encoding="utf-8")
+
+    return mss #, sides_per_language #, ms_id
+
+
+def main():
+    files = list(glob('data/input/contents_*.csv'))
+    ms_identifiers = []
+    contents_frames = []
+    for filename in files:
+        print("Working on", filename)
+        try:
+            frames = process_manuscript(filename)
+            contents_frames.append(frames[0])
+            ms_identifiers.append(frames[1])
+            print("Done")
+        except Exception as e:
+            print("ERROR in {0}: {1}".format(filename, e))
+    all_mss = pd.concat(contents_frames, keys=ms_identifiers, names=["MS_ID"])
+    all_mss.to_csv('data/output/all_contents.csv', encoding="utf-8")
