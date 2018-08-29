@@ -27,6 +27,8 @@
     {% endfor %}
 </dl>
 
+<h2>Manuscript contents</h2>
+{% if page.contents %}
 <table border="0" class="dataframe">
     <caption>Contents</caption>
   <thead>
@@ -52,7 +54,12 @@
   {% endfor %}
   </tbody>
 </table>
+{% else %}
+<p>The contents of this manuscript have not been described in detail.</p>
+{% endif %}
 
+<h2>Owners of this manuscript</h2>
+{% if page.owners %}
 <table border="0" class="dataframe">
     <caption>Owners</caption>
   <thead>
@@ -78,6 +85,9 @@
   {% endfor %}
   </tbody>
 </table>
+{% else %}
+<p>No owners have been identified for this manuscript.</p>
+{% endif %}
 {{ content }}
 
 {% include footer.html %}
