@@ -91,37 +91,6 @@ def get_languages_per_page(mss: pd.DataFrame):
     return languages_per_page
 
 
-def save_as_html(filename, mss, title, for_jekyll=True):
-    """Save a DataFrame as HTML in the specified filename, by default with basic Jekyll metadata"""
-    with pd.option_context('display.max_colwidth', -1):
-        output = mss.to_html(border=0)
-    if for_jekyll:
-        # print("Title: {0}".format(title))
-        output = "---\ntitle: Contents of manuscript {0}\nlayout: details\nms_id: {0}\n---\n".format(title) + output
-    with open(filename, 'w', encoding="utf-8") as f:
-        f.write(output)
-
-
-def save_as_yaml_md(data: dict, filename: str):
-    """Save details for a manuscript in the YAML metadata of a Markdown file"""
-    with open(filename, 'w', encoding='utf-8') as f:
-        f.write("---\n")
-        yaml.dump(data, f, default_flow_style=False)
-        f.write("\n---\n")
-
-
-def convert_ms_to_dict(ser: pd.Series):
-    """Create a dict of the cataloguing info and contents for a manuscript"""
-    # print(ser.name)
-    # print(ser.index)
-    data = ser.to_dict()
-    data["MS_ID"] = ser.name
-    # Split sources on ' ; '
-    # If there is a contents file for this manuscript, include its contents
-    save_as_yaml_md(data, "docs/_details/ms_" + ser.name + ".md")
-    # return data
-
-
 def extract_ms_id(filename):
     base_name = Path(filename).stem
     return base_name.split('_')[1]
@@ -167,7 +136,6 @@ def process_manuscript(filename: str):
 
     # print("Save to HTML")
     ms_id = extract_ms_id(filename)
-    save_as_html("docs/_contents/contents_{0}.html".format(ms_id), mss, ms_id)
     # print("Summarise")
     grouped_by_language = mss.groupby('language')
     total_sides = mss['total_sides'].sum()
@@ -212,10 +180,10 @@ def main():
     print(all_langs_pivot.head())
     all_langs_pivot.to_csv("data/output/all_langs_pivot.csv", encoding="utf-8")
     merged_results = merge_analysis_results(ms_descriptions, all_langs_pivot)
-    merged_results.to_csv("data/output/all_manuscripts.csv", encoding="utf-8")
+    # Make sure empty values are sensible, i.e. empty spaces for strings and 0 for numbers
     fill_values = {'Place_of_production': "",'Produced_for': "",'F_%': 0.,'L_%': 0.,'E_%': 0.,'O_%': 0.,'F_Sides': 0.,'L_Sides': 0.,'E_Sides': 0.,'O_Sides': 0.,'total_sides_English': 0.,'total_sides_French': 0.,'total_sides_Latin': 0.,'total_sides_Other': 0.,'percentage_English': 0.,'percentage_French': 0.,'percentage_Latin': 0.,'percentage_Other': 0.}
     merged_results.fillna(fill_values, inplace=True)
-    merged_results.apply(convert_ms_to_dict, axis=1)
+    merged_results.to_csv("data/output/all_manuscripts.csv", encoding="utf-8")
 
 
 if __name__ == '__main__':
