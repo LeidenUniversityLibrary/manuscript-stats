@@ -47,13 +47,16 @@ def convert_ms_to_dict(ser: pd.Series, contents, owners):
 def main():
     # Read list of manuscripts
     ms_descriptions = pd.read_csv("data/output/all_manuscripts.csv", index_col=1, na_values=[""], error_bad_lines=False)
-    fill_values = {'MS_Sources': "",'Place_of_production': "",'Produced_for': "",'F_%': 0.,'L_%': 0.,'E_%': 0.,'O_%': 0.,'F_Sides': 0.,'L_Sides': 0.,'E_Sides': 0.,'O_Sides': 0.,'total_sides_English': 0.,'total_sides_French': 0.,'total_sides_Latin': 0.,'total_sides_Other': 0.,'percentage_English': 0.,'percentage_French': 0.,'percentage_Latin': 0.,'percentage_Other': 0.}
+    fill_values = {'F_%': 0.,'L_%': 0.,'E_%': 0.,'O_%': 0.,'F_Sides': 0.,'L_Sides': 0.,'E_Sides': 0.,'O_Sides': 0.,'total_sides_English': 0.,'total_sides_French': 0.,'total_sides_Latin': 0.,'total_sides_Other': 0.,'percentage_English': 0.,'percentage_French': 0.,'percentage_Latin': 0.,'percentage_Other': 0.}
     ms_descriptions.fillna(fill_values, inplace=True)
+    ms_descriptions.fillna("", inplace=True)
 
     all_mss = pd.read_csv('data/output/all_contents.csv', encoding="utf-8")
+    all_mss.fillna("", inplace=True)
     all_mss_grouped = all_mss.groupby("MS_ID")
 
     all_owners = pd.read_csv('data/output/all_owners.csv', encoding="utf-8", dtype={'MS_ID': str, 'owner_ID': int, 'owner_descr': str, 'owner_date': str, 'owner_type': str, 'owner_gender': str, 'owner_source': str}, na_values=[""], error_bad_lines=False)
+    all_owners.fillna("", inplace=True)
     all_owners_grouped = all_owners.groupby("MS_ID")
     ms_descriptions.apply(convert_ms_to_dict, axis=1, contents=all_mss_grouped, owners=all_owners_grouped)
 
