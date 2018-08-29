@@ -25,8 +25,7 @@ def contents_as_dicts(contents: pd.DataFrame):
 
 def convert_ms_to_dict(ser: pd.Series, contents, owners):
     """Create a dict of the cataloguing info and contents for a manuscript"""
-    # print(ser.name)
-    # print(ser.index)
+    # print(ser.index.name, ser.name)
     data = dict(ser.to_dict())
     data["MS_ID"] = ser.name
     # Split sources on ' ; '
@@ -47,7 +46,7 @@ def convert_ms_to_dict(ser: pd.Series, contents, owners):
 
 def main():
     # Read list of manuscripts
-    ms_descriptions = pd.read_csv("data/output/all_manuscripts.csv", index_col=0, na_values=[""], error_bad_lines=False)
+    ms_descriptions = pd.read_csv("data/output/all_manuscripts.csv", index_col=1, na_values=[""], error_bad_lines=False)
     fill_values = {'MS_Sources': "",'Place_of_production': "",'Produced_for': "",'F_%': 0.,'L_%': 0.,'E_%': 0.,'O_%': 0.,'F_Sides': 0.,'L_Sides': 0.,'E_Sides': 0.,'O_Sides': 0.,'total_sides_English': 0.,'total_sides_French': 0.,'total_sides_Latin': 0.,'total_sides_Other': 0.,'percentage_English': 0.,'percentage_French': 0.,'percentage_Latin': 0.,'percentage_Other': 0.}
     ms_descriptions.fillna(fill_values, inplace=True)
 

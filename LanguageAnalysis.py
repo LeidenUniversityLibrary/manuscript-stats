@@ -112,7 +112,7 @@ def load_contents(filename: str):
 
 
 def merge_analysis_results(all_manuscripts, all_langs_pivot):
-    result = all_manuscripts.join(all_langs_pivot, how='left')
+    result = all_manuscripts.join(all_langs_pivot, how='left', on="MS_ID")
     return result
 
 
@@ -151,7 +151,7 @@ def process_manuscript(filename: str):
 
 def main():
     # Read list of manuscripts
-    ms_descriptions = pd.read_csv("docs/_data/manuscripts.csv", index_col=0, na_values=[""], error_bad_lines=False)
+    ms_descriptions = pd.read_csv("data/input/French_Manuscripts_July_18.csv", index_col=False, na_values=[""], error_bad_lines=False)
 
     files = list(glob('data/input/contents_*.csv'))
     ms_identifiers = []
@@ -181,9 +181,9 @@ def main():
     all_langs_pivot.to_csv("data/output/all_langs_pivot.csv", encoding="utf-8")
     merged_results = merge_analysis_results(ms_descriptions, all_langs_pivot)
     # Make sure empty values are sensible, i.e. empty spaces for strings and 0 for numbers
-    fill_values = {'Place_of_production': "",'Produced_for': "",'F_%': 0.,'L_%': 0.,'E_%': 0.,'O_%': 0.,'F_Sides': 0.,'L_Sides': 0.,'E_Sides': 0.,'O_Sides': 0.,'total_sides_English': 0.,'total_sides_French': 0.,'total_sides_Latin': 0.,'total_sides_Other': 0.,'percentage_English': 0.,'percentage_French': 0.,'percentage_Latin': 0.,'percentage_Other': 0.}
+    fill_values = {'Place_of_production': "",'Produced_for': "", 'Notes': "", 'F_%': 0.,'L_%': 0.,'E_%': 0.,'O_%': 0.,'F_Sides': 0.,'L_Sides': 0.,'E_Sides': 0.,'O_Sides': 0.,'total_sides_English': 0.,'total_sides_French': 0.,'total_sides_Latin': 0.,'total_sides_Other': 0.,'percentage_English': 0.,'percentage_French': 0.,'percentage_Latin': 0.,'percentage_Other': 0.}
     merged_results.fillna(fill_values, inplace=True)
-    merged_results.to_csv("data/output/all_manuscripts.csv", encoding="utf-8")
+    merged_results.to_csv("data/output/all_manuscripts.csv", index_label="Item", encoding="utf-8")
 
 
 if __name__ == '__main__':

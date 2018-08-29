@@ -18,7 +18,8 @@ layout: default
                 </tr>
             </thead>
             <tbody>
-                {% for m in site.details %}
+                {% assign details = site.details | sort: 'Item' %}
+                {% for m in details %}
                 <tr>
                     <td><a href="{{site.baseurl}}/details/ms_{{ m.MS_ID }}.html">{{ m.MS_ID }}</a></td>
                     <td>{{m.Location }}</td>
