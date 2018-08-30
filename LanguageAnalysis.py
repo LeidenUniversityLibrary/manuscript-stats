@@ -11,7 +11,6 @@ from glob import glob
 from pathlib import Path
 import chardet
 import roman
-import yaml
 
 # Going from folio side ID to an ordinal page number helps calculate the number of pages.
 # 
@@ -37,28 +36,30 @@ def folio_side_to_ordinal(folio, recto_verso):
     was_roman = False
     if type(folio) == str:
         try:
+            # print("Roman!")
             folio = roman.fromRoman(folio.upper())
             was_roman = True
         except:
             folio = int(folio)
     if folio < 1:
         raise NotImplementedError()
-    o = folio * 2
+    if pd.isna(recto_verso):
+        o = folio
+    elif recto_verso == 'v':
+        o = folio * 2
+    elif recto_verso == 'r':
+        o = folio * 2 - 1
+    else:
+        raise RuntimeError("Recto/Verso must be '', 'r' or 'v'")
     if was_roman:
         o += 100000
-    if recto_verso == 'r':
-        o -= 1
     return o
 
 
 def fs2o(ser: pd.Series):
     """Add fields to series that contain start and end ordinal page numbers"""
-    if pd.isna(ser['start_side']):
-        ser['ordinal_start'] = ser['start_folio']
-        ser['ordinal_end'] = ser['end_folio']
-    else:
-        ser['ordinal_start'] = folio_side_to_ordinal(ser['start_folio'], ser['start_side'])
-        ser['ordinal_end'] = folio_side_to_ordinal(ser['end_folio'], ser['end_side'])
+    ser['ordinal_start'] = folio_side_to_ordinal(ser['start_folio'], ser['start_side'])
+    ser['ordinal_end'] = folio_side_to_ordinal(ser['end_folio'], ser['end_side'])
     return ser
 
 
@@ -85,6 +86,7 @@ def count_pages_for_text(ser: pd.Series, languages_per_page=None):
 
 def get_languages_per_page(mss: pd.DataFrame):
     languages_per_page = defaultdict(list)
+    # print(mss)
     for row_index, text in mss.iterrows():
         for page in range(text['ordinal_start'], text['ordinal_end']+1):
             languages_per_page[page].append(text['language'])
@@ -102,8 +104,11 @@ def load_contents(filename: str):
         mss = pd.read_csv(filename, encoding=detected_encoding['encoding'].lower(), index_col=0, usecols=[0, 1, 2, 3, 4, 5, 6], dtype={'item': int, 'title': str, 'language': str, 'start_folio': str, 'start_side': str, 'end_folio': str, 'end_side': str}, na_values=[""], error_bad_lines=False)
     # print("Dropping empty rows")
     mss = mss.dropna(how='all')
-    # Remove whitespace from language names
+    # Remove whitespace from language names, folio sides
     mss['language'] = mss['language'].str.strip()
+    if not pd.isna(mss['start_side']).any():
+        mss['start_side'] = mss['start_side'].str.strip()
+        mss['end_side'] = mss['end_side'].str.strip()
     # print("Fixing folio numbers")
     mss = mss.apply(fix_range_ends, axis=1)
     mss['start_folio'] = pd.to_numeric(mss['start_folio'], errors='ignore')
@@ -126,8 +131,10 @@ def process_manuscript(filename: str):
     mss = load_contents(filename)
 
     # Convert folio + side to ordinal numbers
+    # print("before fs2o")
     mss = mss.apply(fs2o, axis=1)
 
+    # print("before get languages")
     sides_languages = get_languages_per_page(mss)
 
     # print("Count!")
@@ -151,7 +158,7 @@ def process_manuscript(filename: str):
 
 def main():
     # Read list of manuscripts
-    ms_descriptions = pd.read_csv("data/input/French_Manuscripts_July_18.csv", index_col=False, na_values=[""], error_bad_lines=False)
+    ms_descriptions = pd.read_csv("data/input/manuscripts.csv", index_col=False, na_values=[""], error_bad_lines=False)
 
     files = list(glob('data/input/contents_*.csv'))
     ms_identifiers = []

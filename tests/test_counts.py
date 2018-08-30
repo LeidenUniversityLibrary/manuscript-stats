@@ -7,7 +7,7 @@ def test_single_page():
     content = pd.Series({'ordinal_start': 10, 'ordinal_end': 10})
     total_languages = {10: ["French"]}
     obs = count_pages_for_text(content, total_languages)
-    assert 1 == obs['corrected_total_sides']
+    assert 1 == obs['total_sides']
 
 
 def test_count_single_range():
@@ -17,7 +17,7 @@ def test_count_single_range():
     for l in range(1, 11):
         total_languages[l] = ["French"]
     obs = count_pages_for_text(content, total_languages)
-    assert 10 == obs['corrected_total_sides']
+    assert 10 == obs['total_sides']
 
 
 def test_count_double_range():
@@ -27,7 +27,7 @@ def test_count_double_range():
     for l in range(1, 11):
         total_languages[l] = ["French", "Latin"]
     obs = count_pages_for_text(content, total_languages)
-    assert 5 == obs['corrected_total_sides']
+    assert 5 == obs['total_sides']
 
 
 def test_get_sides_languages():
