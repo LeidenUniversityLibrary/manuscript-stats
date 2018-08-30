@@ -1,20 +1,12 @@
 ---
 Collection: National Library of Wales
-E_%: 0.0
-E_Sides: 0.0
-F_%: 0.0
-F_Sides: 0.0
 Folia: iv+52 pp.+ 4
 Headnote: Le Livre de Seyntz Medicines
 Item: 4
-L_%: 0.0
-L_Sides: 0.0
 Location: Aberystwyth
 MS_Date: s.xiv (ex)
 MS_ID: '5'
 Notes: paginated ; now bound with other medical texts
-O_%: 0.0
-O_Sides: 0.0
 Place_of_production: ''
 Produced_for: ''
 Reference: Peniarth 388 c 2

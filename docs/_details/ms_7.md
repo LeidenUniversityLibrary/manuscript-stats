@@ -1,20 +1,12 @@
 ---
 Collection: Univ. of Michigan Libr.
-E_%: 0.0
-E_Sides: 0.0
-F_%: 0.0
-F_Sides: 0.0
 Folia: '1'
 Headnote: Li quatre livre des reis
 Item: 6
-L_%: 0.0
-L_Sides: 0.0
 Location: Ann Arbour
 MS_Date: s.xiii (in)
 MS_ID: '7'
 Notes: fragment of a leaf
-O_%: 0.0
-O_Sides: 0.0
 Place_of_production: ''
 Produced_for: ''
 Reference: '234'

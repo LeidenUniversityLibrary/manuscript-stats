@@ -1,20 +1,12 @@
 ---
 Collection: Royal Library of Belgium
-E_%: 0.0
-E_Sides: 0.0
-F_%: 0.0
-F_Sides: 0.0
 Folia: '1'
 Headnote: Troie Fragments
 Item: 19
-L_%: 0.0
-L_Sides: 0.0
 Location: Brussels
 MS_Date: s.xii (ex)
 MS_ID: 29d
 Notes: 'From the same MS as #10 according to Dean.'
-O_%: 0.0
-O_Sides: 0.0
 Place_of_production: ''
 Produced_for: ''
 Reference: II.139

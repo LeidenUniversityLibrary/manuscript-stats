@@ -1,20 +1,12 @@
 ---
 Collection: Clare College
-E_%: 0.0
-E_Sides: 0.0
-F_%: 0.0
-F_Sides: 0.0
 Folia: '8'
 Headnote: Life of St Thomas of Canterbury
 Item: 25
-L_%: 0.0
-L_Sides: 0.0
 Location: Cambridge
 MS_Date: s.xiii (in)
 MS_ID: 37a
 Notes: flyleaves added to a s.xiii volume
-O_%: 0.0
-O_Sides: 0.0
 Place_of_production: ''
 Produced_for: ''
 Reference: '12'

@@ -1,20 +1,12 @@
 ---
 Collection: National Library of Wales
-E_%: 0.0
-E_Sides: 0.0
-F_%: 0.0
-F_Sides: 0.0
 Folia: roll of 3 strips
 Headnote: The Life of St. Melor
 Item: 2
-L_%: 0.0
-L_Sides: 0.0
 Location: Aberystwyth
 MS_Date: s.xiv (in)
 MS_ID: '3'
 Notes: fragments
-O_%: 0.0
-O_Sides: 0.0
 Place_of_production: ''
 Produced_for: ''
 Reference: Bettisffeld 19

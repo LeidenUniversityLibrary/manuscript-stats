@@ -1,22 +1,14 @@
 ---
 Collection: Corpus Christi College
-E_%: 0.0
-E_Sides: 0.0
-F_%: 0.0
-F_Sides: 0.0
 Folia: 260+4
 Headnote: Prayers, Meditations, Works on Vices and Virtues, and Documents Pertaining
   to Christ Church, Canterbury
 Item: 34
-L_%: 0.0
-L_Sides: 0.0
 Location: Cambridge
 MS_Date: s.xiv (in)
 MS_ID: 46a
 Notes: Bound with four other parts; first part in Christ Church Canterbury in early
   14th C
-O_%: 0.0
-O_Sides: 0.0
 Place_of_production: Kent
 Produced_for: Benedictine cathedral priory of Holy Trinity or Christ Church.
 Reference: '63'

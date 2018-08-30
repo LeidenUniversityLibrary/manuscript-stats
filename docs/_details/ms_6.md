@@ -1,20 +1,12 @@
 ---
 Collection: Bibliotheca Philosophica Hermetica
-E_%: 0.0
-E_Sides: 0.0
-F_%: 0.0
-F_Sides: 0.0
 Folia: '210'
 Headnote: Saints' lives etc
 Item: 5
-L_%: 0.0
-L_Sides: 0.0
 Location: Amsterdam
 MS_Date: s.xv (in)
 MS_ID: '6'
 Notes: 2 folios lost; description incomplete
-O_%: 0.0
-O_Sides: 0.0
 Place_of_production: ''
 Produced_for: ''
 Reference: BPH 058

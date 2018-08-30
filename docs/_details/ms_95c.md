@@ -1,20 +1,12 @@
 ---
 Collection: Gonville & Caius College
-E_%: 0.0
-E_Sides: 0.0
-F_%: 0.0
-F_Sides: 0.0
 Folia: '12'
 Headnote: Passion of St. Edmund etc.
 Item: 85
-L_%: 0.0
-L_Sides: 0.0
 Location: Cambridge
 MS_Date: s.xiii
 MS_ID: 95c
 Notes: bound with 3 other MSS; whole MSS "from St Augustine's, Canterbury"
-O_%: 0.0
-O_Sides: 0.0
 Place_of_production: ''
 Produced_for: ''
 Reference: '435'

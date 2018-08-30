@@ -1,20 +1,12 @@
 ---
 Collection: National Library of Wales
-E_%: 0.0
-E_Sides: 0.0
-F_%: 0.0
-F_Sides: 0.0
 Folia: '2'
 Headnote: Leaves of prayers
 Item: 1
-L_%: 0.0
-L_Sides: 0.0
 Location: Aberystwyth
 MS_Date: s.xiv (1)
 MS_ID: '2'
 Notes: 2 discontinuous fragments which may have once formed part of a roll
-O_%: 0.0
-O_Sides: 0.0
 Place_of_production: ''
 Produced_for: ''
 Reference: Bettisffeld 18

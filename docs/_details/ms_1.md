@@ -1,22 +1,14 @@
 ---
 Collection: National Library of Wales
-E_%: 0.0
-E_Sides: 0.0
-F_%: 0.0
-F_Sides: 0.0
 Folia: '183'
 Headnote: Chronicles d'Engleterre
 Item: 0
-L_%: 0.0
-L_Sides: 0.0
 Location: Aberystwyth
 MS_Date: s.xv
 MS_ID: '1'
 Notes: 's.xv ownership inscription: "Iste liber constat Johanni Leyh militi de Stokedsell
   (?) in parochia de Lambeth juxta London in comitatu Surrey" ; also contains early
   modern ownership inscriptions'
-O_%: 0.0
-O_Sides: 0.0
 Place_of_production: ''
 Produced_for: ''
 Reference: 5028C

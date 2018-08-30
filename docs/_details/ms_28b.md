@@ -1,22 +1,14 @@
 ---
 Collection: Royal Library of Belgium
-E_%: 0.0
-E_Sides: 0.0
-F_%: 0.0
-F_Sides: 0.0
 Folia: '3'
 Headnote: Gautier de Coincy. Les miracles de Notre-Dame. etc.
 Item: 18
-L_%: 0.0
-L_Sides: 0.0
 Location: Brussels
 MS_Date: s.xiii
 MS_ID: 28b
 Notes: "added before the rest of a larger volume (\"A partir du f. 288v, o\xF9 la\
   \ copie est post\xE9rieure, les initiales n'ont plus \xE9t\xE9 ex\xE9cut\xE9es.\"\
   )."
-O_%: 0.0
-O_Sides: 0.0
 Place_of_production: ''
 Produced_for: ''
 Reference: 10747 (3357)

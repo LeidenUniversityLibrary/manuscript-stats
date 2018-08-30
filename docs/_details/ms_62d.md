@@ -1,21 +1,13 @@
 ---
 Collection: Corpus Christi College
-E_%: 0.0
-E_Sides: 0.0
-F_%: 0.0
-F_Sides: 0.0
 Folia: '16'
 Headnote: Charters, Letters, Bulls, etc.
 Item: 51
-L_%: 0.0
-L_Sides: 0.0
 Location: Cambridge
 MS_Date: s.xiii (ex)
 MS_ID: 62d
 Notes: composite MS; this entry is for the fourth part of the MS in the thirteenth
   century
-O_%: 0.0
-O_Sides: 0.0
 Place_of_production: ''
 Produced_for: ''
 Reference: '405'
