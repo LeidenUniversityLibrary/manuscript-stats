@@ -6,6 +6,7 @@ F_%: 0.0
 F_Sides: 0.0
 Folia: '12'
 Headnote: Passion of St. Edmund etc.
+Item: 85
 L_%: 0.0
 L_Sides: 0.0
 Location: Cambridge
@@ -20,24 +21,24 @@ Reference: '435'
 contents:
 - MS_ID: 95c
   end_folio: '128'
-  end_side: .nan
+  end_side: ''
   item: 1
   language: French
   ordinal_end: 128
   ordinal_start: 105
   start_folio: '105'
-  start_side: .nan
+  start_side: ''
   title: The Passion of St. Edmund, King of East Anglia
   total_sides: 23.5
 - MS_ID: 95c
   end_folio: '128'
-  end_side: .nan
+  end_side: ''
   item: 2
   language: French
   ordinal_end: 128
   ordinal_start: 128
   start_folio: '128'
-  start_side: .nan
+  start_side: ''
   title: Declensional endings (Dean no. 299)
   total_sides: 0.5
 percentage_English: 0.0

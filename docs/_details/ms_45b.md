@@ -6,6 +6,7 @@ F_%: 0.0
 F_Sides: 0.0
 Folia: 210+2
 Headnote: The Peterborough Psalter and Bestiary
+Item: 33
 L_%: 0.0
 L_Sides: 0.0
 Location: Cambridge

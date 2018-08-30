@@ -6,6 +6,7 @@ F_%: 0.0
 F_Sides: 0.0
 Folia: '114'
 Headnote: Charters, Letters, Bulls, etc.
+Item: 49
 L_%: 0.0
 L_Sides: 0.0
 Location: Cambridge

@@ -6,12 +6,13 @@ F_%: 0.0
 F_Sides: 0.0
 Folia: vi+27+vi
 Headnote: Bible pictures by William de Brailes
+Item: 7
 L_%: 0.0
 L_Sides: 0.0
 Location: Baltimore
 MS_Date: s.xiii (med)
 MS_ID: '8'
-Notes: .nan
+Notes: ''
 O_%: 0.0
 O_Sides: 0.0
 Place_of_production: ''

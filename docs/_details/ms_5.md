@@ -6,6 +6,7 @@ F_%: 0.0
 F_Sides: 0.0
 Folia: iv+52 pp.+ 4
 Headnote: Le Livre de Seyntz Medicines
+Item: 4
 L_%: 0.0
 L_Sides: 0.0
 Location: Aberystwyth
@@ -20,13 +21,13 @@ Reference: Peniarth 388 c 2
 contents:
 - MS_ID: '5'
   end_folio: '52'
-  end_side: .nan
+  end_side: ''
   item: 1
   language: French
   ordinal_end: 52
   ordinal_start: 1
   start_folio: '1'
-  start_side: .nan
+  start_side: ''
   title: Le Livre de Seyntz Medicines, by Henry of Lancaster (Dean no. 696)
   total_sides: 52.0
 percentage_English: 0.0

@@ -6,6 +6,7 @@ F_%: 0.0
 F_Sides: 0.0
 Folia: roll of 3 strips
 Headnote: The Life of St. Melor
+Item: 2
 L_%: 0.0
 L_Sides: 0.0
 Location: Aberystwyth

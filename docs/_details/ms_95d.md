@@ -6,6 +6,7 @@ F_%: 0.0
 F_Sides: 0.0
 Folia: '32'
 Headnote: Gems etc.
+Item: 86
 L_%: 0.0
 L_Sides: 0.0
 Location: Cambridge
@@ -20,68 +21,68 @@ Reference: '435'
 contents:
 - MS_ID: 95d
   end_folio: '135'
-  end_side: .nan
+  end_side: ''
   item: 1
   language: French
   ordinal_end: 135
   ordinal_start: 129
   start_folio: '129'
-  start_side: .nan
+  start_side: ''
   title: Grant mal fist Adam (Dean no. 598)
   total_sides: 6.5
 - MS_ID: 95d
   end_folio: '139'
-  end_side: .nan
+  end_side: ''
   item: 2
   language: French
   ordinal_end: 139
   ordinal_start: 135
   start_folio: '135'
-  start_side: .nan
+  start_side: ''
   title: St. Paul's vision of Hell, by Adam de Ross (Dean no. 553)
   total_sides: 4.0
 - MS_ID: 95d
   end_folio: '143'
-  end_side: .nan
+  end_side: ''
   item: 3
   language: French
   ordinal_end: 143
   ordinal_start: 139
   start_folio: '139'
-  start_side: .nan
+  start_side: ''
   title: The fifteen signs of the day of judgment (Dean no. 639)
   total_sides: 4.0
 - MS_ID: 95d
   end_folio: '145'
-  end_side: .nan
+  end_side: ''
   item: 4
   language: French
   ordinal_end: 145
   ordinal_start: 143
   start_folio: '143'
-  start_side: .nan
+  start_side: ''
   title: The three estates (Dean no. 100)
   total_sides: 2.0
 - MS_ID: 95d
   end_folio: '185'
-  end_side: .nan
+  end_side: ''
   item: 5
   language: French
   ordinal_end: 185
   ordinal_start: 145
   start_folio: '145'
-  start_side: .nan
+  start_side: ''
   title: The Cambridge Lapidary (Dean no. 354)
   total_sides: 40.0
 - MS_ID: 95d
   end_folio: '192'
-  end_side: .nan
+  end_side: ''
   item: 6
   language: French
   ordinal_end: 192
   ordinal_start: 185
   start_folio: '185'
-  start_side: .nan
+  start_side: ''
   title: Engraved Gems (Dean no. 359)
   total_sides: 7.5
 percentage_English: 0.0

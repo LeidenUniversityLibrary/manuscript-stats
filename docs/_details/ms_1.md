@@ -6,6 +6,7 @@ F_%: 0.0
 F_Sides: 0.0
 Folia: '183'
 Headnote: Chronicles d'Engleterre
+Item: 0
 L_%: 0.0
 L_Sides: 0.0
 Location: Aberystwyth

@@ -6,6 +6,7 @@ F_%: 0.0
 F_Sides: 0.0
 Folia: '3'
 Headnote: Gautier de Coincy. Les miracles de Notre-Dame. etc.
+Item: 18
 L_%: 0.0
 L_Sides: 0.0
 Location: Brussels
