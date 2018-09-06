@@ -73,7 +73,7 @@
    "napp-dimension": "http://data.socialhistory.org/vocab/napp/dimension/"
   }
  ],
- "dc:title": "French_Manuscripts_Feb_11.csv",
+ "dc:title": "Overview of manuscripts and the use of various languages in them",
  "dc:modified": {
   "@value": "2018-09-06",
   "@type": "xsd:date"
@@ -170,6 +170,7 @@
    },
    {
     "datatype": "string",
+    "separator": " ; ",
     "titles": [
      "MS_Sources"
     ],
@@ -182,7 +183,7 @@
      "percentage_French"
     ],
     "name": "percentage_French",
-    "dc:description": "percentage_French"
+    "dc:description": "Percentage of the pages in the manuscript that are written in French"
    },
    {
     "datatype": "number",
@@ -190,7 +191,7 @@
      "percentage_Latin"
     ],
     "name": "percentage_Latin",
-    "dc:description": "L_%"
+    "dc:description": "Percentage of the pages in the manuscript that are written in Latin"
    },
    {
     "datatype": "number",
@@ -198,7 +199,7 @@
      "percentage_English"
     ],
     "name": "percentage_English",
-    "dc:description": "E_%"
+    "dc:description": "Percentage of the pages in the manuscript that are written in English"
    },
    {
     "datatype": "number",
@@ -206,7 +207,7 @@
      "percentage_Other"
     ],
     "name": "percentage_Other",
-    "dc:description": "O_%"
+    "dc:description": "Percentage of the pages in the manuscript that are written in languages other than French, Latin or English"
    },
    {
     "datatype": "number",
@@ -214,7 +215,7 @@
      "total_sides_French"
     ],
     "name": "total_sides_French",
-    "dc:description": "F_Sides"
+    "dc:description": "Pages (or 'sides of folia') in the manuscript that are written in French"
    },
    {
     "datatype": "number",
@@ -222,7 +223,7 @@
      "total_sides_Latin"
     ],
     "name": "total_sides_Latin",
-    "dc:description": "total_sides_Latin"
+    "dc:description": "Pages (or 'sides of folia') in the manuscript that are written in Latin"
    },
    {
     "datatype": "number",
@@ -230,7 +231,7 @@
      "total_sides_English"
     ],
     "name": "total_sides_English",
-    "dc:description": "total_sides_English"
+    "dc:description": "Pages (or 'sides of folia') in the manuscript that are written in English"
    },
    {
     "datatype": "number",
@@ -238,7 +239,7 @@
      "total_sides_Other"
     ],
     "name": "total_sides_Other",
-    "dc:description": "total_sides_Other"
+    "dc:description": "Pages (or 'sides of folia') in the manuscript that are written in languages other than French, Latin or English"
    }
   ]
  }
