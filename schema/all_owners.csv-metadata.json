@@ -1,0 +1,143 @@
+{
+ "dialect": {
+  "quoteChar": "\"", 
+  "delimiter": ",", 
+  "encoding": "ascii"
+ }, 
+ "dcat:keyword": [], 
+ "dc:license": {
+  "@id": "http://opendefinition.org/licenses/cc-by/"
+ }, 
+ "dc:publisher": {
+  "schema:name": "CLARIAH Structured Data Hub - Datalegend", 
+  "schema:url": {
+   "@id": "http://datalegend.net"
+  }
+ }, 
+ "url": "owner_124.csv", 
+ "@context": [
+  "http://csvw.clariah-sdh.eculture.labs.vu.nl/csvw.json", 
+  {
+   "@base": "https://data.digitalscholarship.nl/manuscripts/", 
+   "@language": "en"
+  }, 
+  {
+   "owl": "http://www.w3.org/2002/07/owl#", 
+   "dbo": "http://dbpedia.org/ontology/", 
+   "clioctr": "http://iisg.amsterdam/clio/country/", 
+   "hisclass": "http://iisg.amsterdam/hisclass/", 
+   "hisco-product": "http://iisg.amsterdam/hisco/product/", 
+   "ldp": "http://www.w3.org/ns/ldp#", 
+   "clio": "http://iisg.amsterdam/clio/", 
+   "occhisco": "http://iisg.amsterdam/napp/OCCHISCO/", 
+   "dbr": "http://dbpedia.org/resource/", 
+   "skos": "http://www.w3.org/2004/02/skos/core#", 
+   "xml": "http://www.w3.org/XML/1998/namespace/", 
+   "bibo": "http://purl.org/ontology/bibo/", 
+   "rdfs": "http://www.w3.org/2000/01/rdf-schema#", 
+   "prov": "http://www.w3.org/ns/prov#", 
+   "sdmx-code": "http://purl.org/linked-data/sdmx/2009/code#", 
+   "napp-can91": "http://iisg.amsterdam/napp/dataset/canada1891/", 
+   "hiscam": "http://iisg.amsterdam/hiscam/", 
+   "dbpedia": "http://dbpedia.org/resource/", 
+   "np": "http://www.nanopub.org/nschema#", 
+   "canfam-auke": "http://iisg.amsterdam/canfam/auke/", 
+   "dcterms": "http://purl.org/dc/terms/", 
+   "schema": "http://schema.org/", 
+   "foaf": "http://xmlns.com/foaf/0.1/", 
+   "napp": "http://iisg.amsterdam/napp/", 
+   "sdv": "https://iisg.amsterdam/vocab/", 
+   "hisco": "http://iisg.amsterdam/hisco/", 
+   "sdp": "https://iisg.amsterdam/person/", 
+   "sdr": "https://iisg.amsterdam/", 
+   "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#", 
+   "time": "http://www.w3.org/2006/time#", 
+   "hsn": "http://iisg.amsterdam/hsn2013a/", 
+   "dc": "http://purl.org/dc/terms/", 
+   "hisco-relation": "http://iisg.amsterdam/hisco/relation/", 
+   "hisco-status": "http://iisg.amsterdam/hisco/status/", 
+   "dbp": "http://dbpedia.org/property/", 
+   "clioprop": "http://iisg.amsterdam/clio/property/", 
+   "sdmx-concept": "http://purl.org/linked-data/sdmx/2009/concept#", 
+   "csvw": "http://www.w3.org/ns/csvw#", 
+   "clioind": "http://iisg.amsterdam/clio/indicator/", 
+   "dc11": "http://purl.org/dc/elements/1.1/", 
+   "canfam-dimension": "http://data.socialhistory.org/vocab/canfam/dimension/", 
+   "napp-eng81": "http://iisg.amsterdam/napp/dataset/englandwales1881/", 
+   "canfam": "http://iisg.amsterdam/canfam/dataset/canada1901/", 
+   "napp-sct81": "http://iisg.amsterdam/napp/dataset/scotland1881/", 
+   "sdmx-measure": "http://purl.org/linked-data/sdmx/2009/measure#", 
+   "qb": "http://purl.org/linked-data/cube#", 
+   "hisclass5": "http://iisg.amsterdam/hisclass5/", 
+   "xsd": "http://www.w3.org/2001/XMLSchema#", 
+   "sdmx-dimension": "http://purl.org/linked-data/sdmx/2009/dimension#", 
+   "napp-dimension": "http://data.socialhistory.org/vocab/napp/dimension/"
+  }
+ ], 
+ "dc:title": "owner_124.csv", 
+ "@id": "https://data.digitalscholarship.nl/manuscripts/owner_124.csv", 
+ "dc:modified": {
+  "@value": "2018-04-26", 
+  "@type": "xsd:date"
+ }, 
+ "tableSchema": {
+  "aboutUrl": "{_row}", 
+  "primaryKey": "owner_ID", 
+  "columns": [
+   {
+    "datatype": "string", 
+    "titles": [
+     "owner_ID"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/owner_124.csv/column/owner_ID", 
+    "name": "owner_ID", 
+    "dc:description": "owner_ID is a unique number assigned to each owner of a given manuscript. Values should be numbers."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "owner_descr"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/owner_124.csv/column/owner_descr", 
+    "name": "owner_descr", 
+    "dc:description": "owner_descr is the name of the individual or institution that owned a manuscript"
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "owner_date"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/owner_124.csv/column/owner_date", 
+    "name": "owner_date", 
+    "dc:description": "owner_date refers to the date the manuscript was in the possession of the person or group described in owner_descr. The roman numerals represent the century number (i.e. s.xii = twelfth century).  The following system has been adopted to express dates: s.xii (in) = beginning of the twelfth century; s.xii (1) = first half of the twelfth century; s.xii (med) = middle of the twelfth century; s.xii (2) = second half of the twelfth century; s.xii (ex) = late twelfth century; and s.xii / xiii = late twelfth century.  "
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "owner_type"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/owner_124.csv/column/owner_type", 
+    "name": "owner_type", 
+    "dc:description": "owner_type refers to the social position of the person or group described in owner_descr. Expected values are Clerical or Lay"
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "owner_gender"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/owner_124.csv/column/owner_gender", 
+    "name": "owner_gender", 
+    "dc:description": "owner_gender refers to the gender of the person or group described in owner_descr. Expected values are Man or Woman."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "owner_source"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/owner_124.csv/column/owner_source", 
+    "name": "owner_source", 
+    "dc:description": "owner_source refers to the source or sources of information about a given owner. Sources are separated by a space and a semi-colon. Web links have been provided wherever possible to facilitate ease of reference."
+   }
+  ]
+ }
+}

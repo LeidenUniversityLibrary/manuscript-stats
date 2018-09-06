@@ -1,0 +1,260 @@
+{
+ "dialect": {
+  "quoteChar": "\"", 
+  "delimiter": ",", 
+  "encoding": "utf-8"
+ }, 
+ "dcat:keyword": [], 
+ "dc:license": {
+  "@id": "http://opendefinition.org/licenses/cc-by/"
+ }, 
+ "dc:publisher": {
+  "schema:name": "CLARIAH Structured Data Hub - Datalegend", 
+  "schema:url": {
+   "@id": "http://datalegend.net"
+  }
+ }, 
+ "url": "French_Manuscripts_Feb_11.csv", 
+ "@context": [
+  "http://csvw.clariah-sdh.eculture.labs.vu.nl/csvw.json", 
+  {
+   "@base": "https://data.digitalscholarship.nl/manuscripts/", 
+   "@language": "en"
+  }, 
+  {
+   "owl": "http://www.w3.org/2002/07/owl#", 
+   "dbo": "http://dbpedia.org/ontology/", 
+   "clioctr": "http://iisg.amsterdam/clio/country/", 
+   "hisclass": "http://iisg.amsterdam/hisclass/", 
+   "hisco-product": "http://iisg.amsterdam/hisco/product/", 
+   "ldp": "http://www.w3.org/ns/ldp#", 
+   "clio": "http://iisg.amsterdam/clio/", 
+   "occhisco": "http://iisg.amsterdam/napp/OCCHISCO/", 
+   "dbr": "http://dbpedia.org/resource/", 
+   "skos": "http://www.w3.org/2004/02/skos/core#", 
+   "xml": "http://www.w3.org/XML/1998/namespace/", 
+   "bibo": "http://purl.org/ontology/bibo/", 
+   "rdfs": "http://www.w3.org/2000/01/rdf-schema#", 
+   "prov": "http://www.w3.org/ns/prov#", 
+   "sdmx-code": "http://purl.org/linked-data/sdmx/2009/code#", 
+   "napp-can91": "http://iisg.amsterdam/napp/dataset/canada1891/", 
+   "hiscam": "http://iisg.amsterdam/hiscam/", 
+   "dbpedia": "http://dbpedia.org/resource/", 
+   "np": "http://www.nanopub.org/nschema#", 
+   "canfam-auke": "http://iisg.amsterdam/canfam/auke/", 
+   "dcterms": "http://purl.org/dc/terms/", 
+   "schema": "http://schema.org/", 
+   "foaf": "http://xmlns.com/foaf/0.1/", 
+   "napp": "http://iisg.amsterdam/napp/", 
+   "sdv": "https://iisg.amsterdam/vocab/", 
+   "hisco": "http://iisg.amsterdam/hisco/", 
+   "sdp": "https://iisg.amsterdam/person/", 
+   "sdr": "https://iisg.amsterdam/", 
+   "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#", 
+   "time": "http://www.w3.org/2006/time#", 
+   "hsn": "http://iisg.amsterdam/hsn2013a/", 
+   "dc": "http://purl.org/dc/terms/", 
+   "hisco-relation": "http://iisg.amsterdam/hisco/relation/", 
+   "hisco-status": "http://iisg.amsterdam/hisco/status/", 
+   "dbp": "http://dbpedia.org/property/", 
+   "clioprop": "http://iisg.amsterdam/clio/property/", 
+   "sdmx-concept": "http://purl.org/linked-data/sdmx/2009/concept#", 
+   "csvw": "http://www.w3.org/ns/csvw#", 
+   "clioind": "http://iisg.amsterdam/clio/indicator/", 
+   "dc11": "http://purl.org/dc/elements/1.1/", 
+   "canfam-dimension": "http://data.socialhistory.org/vocab/canfam/dimension/", 
+   "napp-eng81": "http://iisg.amsterdam/napp/dataset/englandwales1881/", 
+   "canfam": "http://iisg.amsterdam/canfam/dataset/canada1901/", 
+   "napp-sct81": "http://iisg.amsterdam/napp/dataset/scotland1881/", 
+   "sdmx-measure": "http://purl.org/linked-data/sdmx/2009/measure#", 
+   "qb": "http://purl.org/linked-data/cube#", 
+   "hisclass5": "http://iisg.amsterdam/hisclass5/", 
+   "xsd": "http://www.w3.org/2001/XMLSchema#", 
+   "sdmx-dimension": "http://purl.org/linked-data/sdmx/2009/dimension#", 
+   "napp-dimension": "http://data.socialhistory.org/vocab/napp/dimension/"
+  }
+ ], 
+ "dc:title": "French_Manuscripts_Feb_11.csv", 
+ "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv", 
+ "dc:modified": {
+  "@value": "2018-04-26", 
+  "@type": "xsd:date"
+ }, 
+ "tableSchema": {
+  "aboutUrl": "{_row}", 
+  "primaryKey": "MS_ID", 
+  "columns": [
+   {
+    "datatype": "string", 
+    "titles": [
+     "MS_ID"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/MS_ID", 
+    "name": "MS_ID", 
+    "dc:description": "MS_ID is a unique identifier for a given manuscript that contains Anglo-Norman. The number generally corresponds with a manuscript’s position on the Index of MSS in Ruth Dean and Maureen Boulton’s Anglo-Norman Literature: A Guide to Texts and Manuscripts (1999). Where the MS_ID contains a letter, the MS_ID refers to a part of a larger composite manuscript (i.e. the modern form of the manuscript is composed of various parts that were copied separately in the medieval period). The letter indicates the position of the given part within the larger present-day manuscript, where ‘a’ is the first part, ‘b’ the second, etc."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "Location"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/Location", 
+    "name": "Location", 
+    "dc:description": "Location is the city of the repository where a given manuscript is held."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "Collection"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/Collection", 
+    "name": "Collection", 
+    "dc:description": "Collection is the institution of collection in which the given manuscript is held."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "Reference"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/Reference", 
+    "name": "Reference", 
+    "dc:description": "Reference is the institution-specific identifier for a given manuscript."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "Headnote"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/Headnote", 
+    "name": "Headnote", 
+    "dc:description": "Headnote is the brief title given to the manuscript in its catalogue. Where a manuscript has not been given a title it has been supplied based on the contents."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "MS_Date"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/MS_Date", 
+    "name": "MS_Date", 
+    "dc:description": "MS_Date refers to the date a given manuscript was copied. Where the MS_ID refers to a part of a MS, MS_date refers to the date of that part. Expected dates range from s.xi to s.xvi (manuscripts produced after 1550 are omitted from the catalogue). The roman numerals represent the century number (i.e. s.xii = twelfth century). Dates are based on those given by Dean except in rare cases in which the date in a catalogue entry was more reliable.  The following system has been adopted to express dates: s.xii (in) = beginning of the twelfth century; s.xii (1) = first half of the twelfth century; s.xii (med) = middle of the twelfth century; s.xii (2) = second half of the twelfth century; s.xii (ex) = late twelfth century; and s.xii / xiii = late twelfth century. "
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "Folia"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/Folia", 
+    "name": "Folia", 
+    "dc:description": "Folia refers to the number of leaves in a manuscript, including both those with writing and those without, based on the catalogue description. Where MS_ID refers to a part of a MS, the folia refers to the number of leaves in that part of the MS."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "Place_of_production"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/Place_of_production", 
+    "name": "Place_of_production", 
+    "dc:description": "Place_of_production refers to the shire or country (if outside of England) where the MS was produced."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "Produced_for"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/Produced_for", 
+    "name": "Produced_for", 
+    "dc:description": "Produced_for is the person or group that the manuscript was produced for."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "Notes"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/Notes", 
+    "name": "Notes", 
+    "dc:description": "Notes is for any additional important information that doesn’t fit in the other categories; information about post-1550 ownership is usually omitted"
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "MS_Sources"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/MS_Sources", 
+    "name": "MS_Sources", 
+    "dc:description": "MS_Sources is the source or sources of information about a given manuscript. Sources are separated by a space and a semi-colon. Web links have been provided wherever possible to facilitate ease of reference. "
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "F_%"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/F__", 
+    "name": "F_percentage",
+    "dc:description": "F_%"
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "L_%"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/L__", 
+    "name": "L_percentage",
+    "dc:description": "L_%"
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "E_%"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/E__", 
+    "name": "E_percentage",
+    "dc:description": "E_%"
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "O_%"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/O__", 
+    "name": "O_percentage",
+    "dc:description": "O_%"
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "F_Sides"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/F_Sides", 
+    "name": "F_Sides", 
+    "dc:description": "F_Sides"
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "L_Sides"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/L_Sides", 
+    "name": "L_Sides", 
+    "dc:description": "L_Sides"
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "E_Sides"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/E_Sides", 
+    "name": "E_Sides", 
+    "dc:description": "E_Sides"
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "O_Sides"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/French_Manuscripts_Feb_11.csv/column/O_Sides", 
+    "name": "O_Sides", 
+    "dc:description": "O_Sides"
+   }
+  ]
+ }
+}

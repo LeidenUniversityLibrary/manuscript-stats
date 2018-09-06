@@ -1,0 +1,158 @@
+{
+ "dialect": {
+  "quoteChar": "\"", 
+  "delimiter": ",", 
+  "encoding": "ascii"
+ }, 
+ "dcat:keyword": [], 
+ "dc:license": {
+  "@id": "http://opendefinition.org/licenses/cc-by/"
+ }, 
+ "dc:publisher": {
+  "schema:name": "CLARIAH Structured Data Hub - Datalegend", 
+  "schema:url": {
+   "@id": "http://datalegend.net"
+  }
+ }, 
+ "url": "contents_124.csv", 
+ "@context": [
+   "http://csvw.clariah-sdh.eculture.labs.vu.nl/csvw.json",
+  {
+   "@base": "https://data.digitalscholarship.nl/manuscripts/", 
+   "@language": "en"
+  }, 
+  {
+   "owl": "http://www.w3.org/2002/07/owl#", 
+   "dbo": "http://dbpedia.org/ontology/", 
+   "clioctr": "http://iisg.amsterdam/clio/country/", 
+   "hisclass": "http://iisg.amsterdam/hisclass/", 
+   "hisco-product": "http://iisg.amsterdam/hisco/product/", 
+   "ldp": "http://www.w3.org/ns/ldp#", 
+   "clio": "http://iisg.amsterdam/clio/", 
+   "occhisco": "http://iisg.amsterdam/napp/OCCHISCO/", 
+   "dbr": "http://dbpedia.org/resource/", 
+   "skos": "http://www.w3.org/2004/02/skos/core#", 
+   "xml": "http://www.w3.org/XML/1998/namespace/", 
+   "bibo": "http://purl.org/ontology/bibo/", 
+   "rdfs": "http://www.w3.org/2000/01/rdf-schema#", 
+   "prov": "http://www.w3.org/ns/prov#", 
+   "sdmx-code": "http://purl.org/linked-data/sdmx/2009/code#", 
+   "napp-can91": "http://iisg.amsterdam/napp/dataset/canada1891/", 
+   "hiscam": "http://iisg.amsterdam/hiscam/", 
+   "dbpedia": "http://dbpedia.org/resource/", 
+   "np": "http://www.nanopub.org/nschema#", 
+   "canfam-auke": "http://iisg.amsterdam/canfam/auke/", 
+   "dcterms": "http://purl.org/dc/terms/", 
+   "schema": "http://schema.org/", 
+   "foaf": "http://xmlns.com/foaf/0.1/", 
+   "napp": "http://iisg.amsterdam/napp/", 
+   "sdv": "https://iisg.amsterdam/vocab/", 
+   "hisco": "http://iisg.amsterdam/hisco/", 
+   "sdp": "https://iisg.amsterdam/person/", 
+   "sdr": "https://iisg.amsterdam/", 
+   "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#", 
+   "time": "http://www.w3.org/2006/time#", 
+   "hsn": "http://iisg.amsterdam/hsn2013a/", 
+   "dc": "http://purl.org/dc/terms/", 
+   "hisco-relation": "http://iisg.amsterdam/hisco/relation/", 
+   "hisco-status": "http://iisg.amsterdam/hisco/status/", 
+   "dbp": "http://dbpedia.org/property/", 
+   "clioprop": "http://iisg.amsterdam/clio/property/", 
+   "sdmx-concept": "http://purl.org/linked-data/sdmx/2009/concept#", 
+   "csvw": "http://www.w3.org/ns/csvw#", 
+   "clioind": "http://iisg.amsterdam/clio/indicator/", 
+   "dc11": "http://purl.org/dc/elements/1.1/", 
+   "canfam-dimension": "http://data.socialhistory.org/vocab/canfam/dimension/", 
+   "napp-eng81": "http://iisg.amsterdam/napp/dataset/englandwales1881/", 
+   "canfam": "http://iisg.amsterdam/canfam/dataset/canada1901/", 
+   "napp-sct81": "http://iisg.amsterdam/napp/dataset/scotland1881/", 
+   "sdmx-measure": "http://purl.org/linked-data/sdmx/2009/measure#", 
+   "qb": "http://purl.org/linked-data/cube#", 
+   "hisclass5": "http://iisg.amsterdam/hisclass5/", 
+   "xsd": "http://www.w3.org/2001/XMLSchema#", 
+   "sdmx-dimension": "http://purl.org/linked-data/sdmx/2009/dimension#", 
+   "napp-dimension": "http://data.socialhistory.org/vocab/napp/dimension/"
+  }
+ ], 
+ "dc:title": "contents_124.csv", 
+ "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv", 
+ "dc:modified": {
+  "@value": "2018-04-26", 
+  "@type": "xsd:date"
+ }, 
+ "tableSchema": {
+  "aboutUrl": "{_row}", 
+  "primaryKey": "item", 
+  "columns": [
+   {
+    "datatype": "string", 
+    "titles": [
+     "item"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/item", 
+    "name": "item", 
+    "dc:description": "item is a unique number for each constituent piece of writing in a given manuscript. Where a piece of writing is in multiple languages, each language element in the piece is assigned a distinct item number."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "title"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/title", 
+    "name": "title", 
+    "dc:description": "title is the title or first few words of a work contained in a given manuscript."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "language"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/language", 
+    "name": "language", 
+    "dc:description": "language is the language used in a given item. Expected values are French, Latin, English and Other."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "start_folio"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/start_folio", 
+    "name": "start_folio", 
+    "dc:description": "start_folio is the folio number on which the beginning of a given item can be found. Numbers are expected."
+   }, 
+   {
+    "datatype": {
+     "base": "string",
+      "format": "[rv]"
+    },
+    "titles": [
+     "start_side"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/start_side", 
+    "name": "start_side", 
+    "dc:description": "start_side is the side of the folio on which the beginning of a given item can be found. Expected values are r (recto: usually the right hand page of an open book) and v (verso: usually the left hand page of an open book)."
+   }, 
+   {
+    "datatype": "string", 
+    "titles": [
+     "end_folio"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/end_folio", 
+    "name": "end_folio", 
+    "dc:description": "end_folio is the folio number on which the end of a given item can be found. Numbers are expected."
+   }, 
+   {
+    "datatype": {
+     "base": "string",
+      "format": "[rv]"
+    },
+    "titles": [
+     "end_side"
+    ], 
+    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/end_side", 
+    "name": "end_side", 
+    "dc:description": "end_side is the side of the folio on which the end of a given item can be found. Expected values are r (recto: usually the right hand page of an open book) and v (verso: usually the left hand page of an open book)."
+   }
+  ]
+ }
+}
