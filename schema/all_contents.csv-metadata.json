@@ -2,7 +2,7 @@
  "dialect": {
   "quoteChar": "\"",
   "delimiter": ",",
-  "encoding": "ascii"
+  "encoding": "utf-8"
  },
  "dcat:keyword": [],
  "dc:license": {
@@ -74,21 +74,25 @@
   }
  ],
  "dc:title": "contents_124.csv",
- "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv",
  "dc:modified": {
-  "@value": "2018-04-26",
+  "@value": "2018-09-06",
   "@type": "xsd:date"
  },
  "tableSchema": {
   "aboutUrl": "{_row}",
-  "primaryKey": "item",
+  "primaryKey": ["MS_ID","item"],
   "columns": [
    {
     "datatype": "string",
+    "titles": ["MS_ID"],
+    "name": "MS_ID",
+    "dc:description": "Manuscript identifier, or identifier of a partial manuscript when suffixed by a letter"
+   },
+   {
+    "datatype": "integer",
     "titles": [
      "item"
     ],
-    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/item",
     "name": "item",
     "dc:description": "item is a unique number for each constituent piece of writing in a given manuscript. Where a piece of writing is in multiple languages, each language element in the piece is assigned a distinct item number."
    },
@@ -97,16 +101,17 @@
     "titles": [
      "title"
     ],
-    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/title",
     "name": "title",
     "dc:description": "title is the title or first few words of a work contained in a given manuscript."
    },
    {
-    "datatype": "string",
+    "datatype": {
+     "base":"string",
+     "format": "French|English|Latin|Other"
+    },
     "titles": [
      "language"
     ],
-    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/language",
     "name": "language",
     "dc:description": "language is the language used in a given item. Expected values are French, Latin, English and Other."
    },
@@ -115,7 +120,6 @@
     "titles": [
      "start_folio"
     ],
-    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/start_folio",
     "name": "start_folio",
     "dc:description": "start_folio is the folio number on which the beginning of a given item can be found. Numbers are expected."
    },
@@ -127,7 +131,6 @@
     "titles": [
      "start_side"
     ],
-    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/start_side",
     "name": "start_side",
     "dc:description": "start_side is the side of the folio on which the beginning of a given item can be found. Expected values are r (recto: usually the right hand page of an open book) and v (verso: usually the left hand page of an open book)."
    },
@@ -136,7 +139,6 @@
     "titles": [
      "end_folio"
     ],
-    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/end_folio",
     "name": "end_folio",
     "dc:description": "end_folio is the folio number on which the end of a given item can be found. Numbers are expected."
    },
@@ -148,9 +150,32 @@
     "titles": [
      "end_side"
     ],
-    "@id": "https://data.digitalscholarship.nl/manuscripts/contents_124.csv/column/end_side",
     "name": "end_side",
     "dc:description": "end_side is the side of the folio on which the end of a given item can be found. Expected values are r (recto: usually the right hand page of an open book) and v (verso: usually the left hand page of an open book)."
+   },
+   {
+    "datatype": "integer",
+    "titles": [
+     "ordinal_start"
+    ],
+    "name": "ordinal_start",
+    "dc:description": "Start page of a text, counting from 1 when start_folio is a Arabic numeral and starting from 100001 when start_side is a Roman numeral."
+   },
+   {
+    "datatype": "integer",
+    "titles": [
+     "ordinal_end"
+    ],
+    "name": "ordinal_end",
+    "dc:description": "End page of a text, counting from 1 when end_folio is a Arabic numeral and starting from 100001 when end_side is a Roman numeral."
+   },
+   {
+    "datatype": "number",
+    "titles": [
+     "total_sides"
+    ],
+    "name": "total_sides",
+    "dc:description": "Total number of pages that this text counts for."
    }
   ]
  }
