@@ -83,7 +83,7 @@
   "primaryKey": "MS_ID",
   "columns": [
    {
-    "datatype": "number",
+    "datatype": "integer",
     "titles": ["Item"],
     "name": "Item",
     "dc:description": "Item is a number used for sorting the manuscript entries, as the MS_ID cannot be used for sorting numerically."
@@ -177,7 +177,7 @@
     "dc:description": "MS_Sources is the source or sources of information about a given manuscript. Sources are separated by a space and a semi-colon. Web links have been provided wherever possible to facilitate ease of reference. "
    },
    {
-    "datatype": "string",
+    "datatype": "number",
     "titles": [
      "percentage_French"
     ],
@@ -185,7 +185,7 @@
     "dc:description": "percentage_French"
    },
    {
-    "datatype": "string",
+    "datatype": "number",
     "titles": [
      "percentage_Latin"
     ],
@@ -193,7 +193,7 @@
     "dc:description": "L_%"
    },
    {
-    "datatype": "string",
+    "datatype": "number",
     "titles": [
      "percentage_English"
     ],
@@ -201,7 +201,7 @@
     "dc:description": "E_%"
    },
    {
-    "datatype": "string",
+    "datatype": "number",
     "titles": [
      "percentage_Other"
     ],
@@ -209,7 +209,7 @@
     "dc:description": "O_%"
    },
    {
-    "datatype": "string",
+    "datatype": "number",
     "titles": [
      "total_sides_French"
     ],
@@ -217,7 +217,7 @@
     "dc:description": "F_Sides"
    },
    {
-    "datatype": "string",
+    "datatype": "number",
     "titles": [
      "total_sides_Latin"
     ],
@@ -225,7 +225,7 @@
     "dc:description": "total_sides_Latin"
    },
    {
-    "datatype": "string",
+    "datatype": "number",
     "titles": [
      "total_sides_English"
     ],
@@ -233,7 +233,7 @@
     "dc:description": "total_sides_English"
    },
    {
-    "datatype": "string",
+    "datatype": "number",
     "titles": [
      "total_sides_Other"
     ],
