@@ -86,7 +86,7 @@
     "datatype": "string",
     "titles": ["MS_ID"],
     "name": "MS_ID",
-    "dc:description": "Manuscript identifier, or identifier of a partial manuscript when suffixed by a letter"
+    "dc:description": "Manuscript identifier, or identifier of a partial manuscript when suffixed by a letter."
    },
    {
     "datatype": "integer",
@@ -176,6 +176,15 @@
     ],
     "name": "total_sides",
     "dc:description": "Total number of pages that this text counts for."
+   }
+  ],
+  "foreignKeys": [
+   {
+    "columnReference": "MS_ID",
+    "reference": {
+     "resource": "all_manuscripts.csv",
+     "columnReference": "MS_ID"
+    }
    }
   ]
  }

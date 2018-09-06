@@ -134,7 +134,7 @@
      "MS_Date"
     ],
     "name": "MS_Date",
-    "dc:description": "MS_Date refers to the date a given manuscript was copied. Where the MS_ID refers to a part of a MS, MS_date refers to the date of that part. Expected dates range from s.xi to s.xvi (manuscripts produced after 1550 are omitted from the catalogue). The roman numerals represent the century number (i.e. s.xii = twelfth century). Dates are based on those given by Dean except in rare cases in which the date in a catalogue entry was more reliable.  The following system has been adopted to express dates: s.xii (in) = beginning of the twelfth century; s.xii (1) = first half of the twelfth century; s.xii (med) = middle of the twelfth century; s.xii (2) = second half of the twelfth century; s.xii (ex) = late twelfth century; and s.xii / xiii = late twelfth century. "
+    "dc:description": "MS_Date refers to the date a given manuscript was copied. Where the MS_ID refers to a part of a MS, MS_date refers to the date of that part. Expected dates range from s.xi to s.xvi (manuscripts produced after 1550 are omitted from the catalogue). The roman numerals represent the century number (i.e. s.xii = twelfth century). Dates are based on those given by Dean except in rare cases in which the date in a catalogue entry was more reliable.  The following system has been adopted to express dates: s.xii (in) = beginning of the twelfth century; s.xii (1) = first half of the twelfth century; s.xii (med) = middle of the twelfth century; s.xii (2) = second half of the twelfth century; s.xii (ex) = late twelfth century; and s.xii / xiii = late twelfth century."
    },
    {
     "datatype": "string",
@@ -166,7 +166,7 @@
      "Notes"
     ],
     "name": "Notes",
-    "dc:description": "Notes is for any additional important information that doesn’t fit in the other categories; information about post-1550 ownership is usually omitted"
+    "dc:description": "Notes is for any additional important information that doesn’t fit in the other categories; information about post-1550 ownership is usually omitted."
    },
    {
     "datatype": "string",
@@ -175,7 +175,7 @@
      "MS_Sources"
     ],
     "name": "MS_Sources",
-    "dc:description": "MS_Sources is the source or sources of information about a given manuscript. Sources are separated by a space and a semi-colon. Web links have been provided wherever possible to facilitate ease of reference. "
+    "dc:description": "MS_Sources is the source or sources of information about a given manuscript. Sources are separated by a space and a semi-colon. Web links have been provided wherever possible to facilitate ease of reference."
    },
    {
     "datatype": "number",
@@ -183,7 +183,7 @@
      "percentage_French"
     ],
     "name": "percentage_French",
-    "dc:description": "Percentage of the pages in the manuscript that are written in French"
+    "dc:description": "Percentage of the pages in the manuscript that are written in French."
    },
    {
     "datatype": "number",
@@ -191,7 +191,7 @@
      "percentage_Latin"
     ],
     "name": "percentage_Latin",
-    "dc:description": "Percentage of the pages in the manuscript that are written in Latin"
+    "dc:description": "Percentage of the pages in the manuscript that are written in Latin."
    },
    {
     "datatype": "number",
@@ -199,7 +199,7 @@
      "percentage_English"
     ],
     "name": "percentage_English",
-    "dc:description": "Percentage of the pages in the manuscript that are written in English"
+    "dc:description": "Percentage of the pages in the manuscript that are written in English."
    },
    {
     "datatype": "number",
@@ -207,7 +207,7 @@
      "percentage_Other"
     ],
     "name": "percentage_Other",
-    "dc:description": "Percentage of the pages in the manuscript that are written in languages other than French, Latin or English"
+    "dc:description": "Percentage of the pages in the manuscript that are written in languages other than French, Latin or English."
    },
    {
     "datatype": "number",
@@ -215,7 +215,7 @@
      "total_sides_French"
     ],
     "name": "total_sides_French",
-    "dc:description": "Pages (or 'sides of folia') in the manuscript that are written in French"
+    "dc:description": "Pages (or 'sides of folia') in the manuscript that are written in French."
    },
    {
     "datatype": "number",
@@ -223,7 +223,7 @@
      "total_sides_Latin"
     ],
     "name": "total_sides_Latin",
-    "dc:description": "Pages (or 'sides of folia') in the manuscript that are written in Latin"
+    "dc:description": "Pages (or 'sides of folia') in the manuscript that are written in Latin."
    },
    {
     "datatype": "number",
@@ -231,7 +231,7 @@
      "total_sides_English"
     ],
     "name": "total_sides_English",
-    "dc:description": "Pages (or 'sides of folia') in the manuscript that are written in English"
+    "dc:description": "Pages (or 'sides of folia') in the manuscript that are written in English."
    },
    {
     "datatype": "number",
@@ -239,7 +239,7 @@
      "total_sides_Other"
     ],
     "name": "total_sides_Other",
-    "dc:description": "Pages (or 'sides of folia') in the manuscript that are written in languages other than French, Latin or English"
+    "dc:description": "Pages (or 'sides of folia') in the manuscript that are written in languages other than French, Latin or English."
    }
   ]
  }

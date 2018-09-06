@@ -86,7 +86,7 @@
     "datatype": "string",
     "titles": ["MS_ID"],
     "name": "MS_ID",
-    "dc:description": "Manuscript identifier, or identifier of a partial manuscript when suffixed by a letter"
+    "dc:description": "Manuscript identifier, or identifier of a partial manuscript when suffixed by a letter."
    },
    {
     "datatype": "integer",
@@ -102,7 +102,7 @@
      "owner_descr"
     ],
     "name": "owner_descr",
-    "dc:description": "owner_descr is the name of the individual or institution that owned a manuscript"
+    "dc:description": "owner_descr is the name of the individual or institution that owned a manuscript."
    },
    {
     "datatype": "string",
@@ -110,7 +110,7 @@
      "owner_date"
     ],
     "name": "owner_date",
-    "dc:description": "owner_date refers to the date the manuscript was in the possession of the person or group described in owner_descr. The roman numerals represent the century number (i.e. s.xii = twelfth century).  The following system has been adopted to express dates: s.xii (in) = beginning of the twelfth century; s.xii (1) = first half of the twelfth century; s.xii (med) = middle of the twelfth century; s.xii (2) = second half of the twelfth century; s.xii (ex) = late twelfth century; and s.xii / xiii = late twelfth century.  "
+    "dc:description": "owner_date refers to the date the manuscript was in the possession of the person or group described in owner_descr. The roman numerals represent the century number (i.e. s.xii = twelfth century).  The following system has been adopted to express dates: s.xii (in) = beginning of the twelfth century; s.xii (1) = first half of the twelfth century; s.xii (med) = middle of the twelfth century; s.xii (2) = second half of the twelfth century; s.xii (ex) = late twelfth century; and s.xii / xiii = late twelfth century."
    },
    {
     "datatype": {
@@ -121,7 +121,7 @@
      "owner_type"
     ],
     "name": "owner_type",
-    "dc:description": "owner_type refers to the social position of the person or group described in owner_descr. Expected values are Clerical or Lay"
+    "dc:description": "owner_type refers to the social position of the person or group described in owner_descr. Expected values are Clerical or Lay."
    },
    {
     "datatype": {
@@ -141,6 +141,15 @@
     ],
     "name": "owner_source",
     "dc:description": "owner_source refers to the source or sources of information about a given owner. Sources are separated by a space and a semi-colon. Web links have been provided wherever possible to facilitate ease of reference."
+   }
+  ],
+  "foreignKeys": [
+   {
+    "columnReference": "MS_ID",
+    "reference": {
+     "resource": "all_manuscripts.csv",
+     "columnReference": "MS_ID"
+    }
    }
   ]
  }
