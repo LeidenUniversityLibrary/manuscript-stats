@@ -1,59 +1,11 @@
 
 import pandas as pd
-from collections import defaultdict
 from glob import glob
 from pathlib import Path
 import chardet
 import roman
-import yaml
 
-# Going from folio side ID to an ordinal page number helps calculate the number of pages.
-#
-# - 1r = 1
-# - 1v = 2
-# - 2r = 3
-# - 2v = 4
-#
-# etc. So multiply by 2 and subtract 1 if there's an `r` in the folio side ID.
-
-
-# But these numbers do not account for sides with two or more texts – those sides count as 1 for each text.
-#
-# Instead, we can calculate how much of each side that is the start or end for a text should count for each language.
-# Let's assume all texts on a side take equal parts of the side. Then if a side has two (parts of) English texts
-# and one Latin text, the side counts as $1/3$ for each text.
-#
-# We need to create an index for all sides that contain the start and/or end of a text.
-
-
-def folio_side_to_ordinal(folio, recto_verso):
-    """Calculate the ordinal page number from folio number and recto/verso indication"""
-    was_roman = False
-    if type(folio) == str:
-        try:
-            folio = roman.fromRoman(folio.upper())
-            was_roman = True
-        except:
-            folio = int(folio)
-    if folio < 1:
-        raise NotImplementedError()
-    o = folio * 2
-    if was_roman:
-        o += 100000
-    if recto_verso == 'r':
-        o -= 1
-    return o
-
-
-def fs2o(ser: pd.Series):
-    """Add fields to series that contain start and end ordinal page numbers"""
-    if pd.isna(ser['start_side']):
-        ser['ordinal_start'] = ser['start_folio']
-        ser['ordinal_end'] = ser['end_folio']
-    else:
-        ser['ordinal_start'] = folio_side_to_ordinal(ser['start_folio'], ser['start_side'])
-        ser['ordinal_end'] = folio_side_to_ordinal(ser['end_folio'], ser['end_side'])
-    return ser
+# Normalise file encoding and remove extraneous columns
 
 
 def fix_range_ends(ser: pd.Series):
@@ -72,6 +24,9 @@ def load_contents(filename: str):
     mss = mss.dropna(how='all')
     # Remove whitespace from language names
     mss['language'] = mss['language'].str.strip()
+    if not pd.isna(mss['start_side']).any():
+        mss['start_side'] = mss['start_side'].str.strip()
+        mss['end_side'] = mss['end_side'].str.strip()
     # print("Fixing folio numbers")
     mss = mss.apply(fix_range_ends, axis=1)
     mss['start_folio'] = pd.to_numeric(mss['start_folio'], errors='ignore')
@@ -87,35 +42,17 @@ def extract_ms_id(filename):
 def process_manuscript(filename: str):
     file = Path(filename).name
     parent_dir = Path(filename).parent.parent
-    output_dir = parent_dir / "output"
+    output_dir = parent_dir / "normalised"
     output_dir.mkdir(exist_ok=True)
 
     # print("Trying to open")
     mss = load_contents(filename)
 
-    # Convert folio + side to ordinal numbers
-    mss = mss.apply(fs2o, axis=1)
-
-    # sides_languages = get_languages_per_page(mss)
-
-    # print("Count!")
-    # mss = mss.apply(count_pages_for_text, axis=1, languages_per_page=sides_languages)
     mss.to_csv(output_dir / file, encoding="utf-8")
 
-    # print("Save to HTML")
-    # ms_id = extract_ms_id(filename)
-    # save_as_html("docs/_contents/contents_{0}.html".format(ms_id), mss, ms_id)
-    # print("Summarise")
-    # grouped_by_language = mss.groupby('language')
-    # total_sides = mss['total_sides'].sum()
+    ms_id = extract_ms_id(filename)
 
-    # Summarise the use of languages and write the absolute number and ratio of pages per language
-    # to a new CSV file
-    # sides_per_language = grouped_by_language.agg({'total_sides': sum})
-    # sides_per_language['percentage'] = sides_per_language['total_sides'].apply(lambda x: x / total_sides * 100)
-    # sides_per_language.to_csv(output_dir / file.replace("contents", "languages"), encoding="utf-8")
-
-    return mss #, sides_per_language #, ms_id
+    return mss, ms_id
 
 
 def main():
@@ -132,4 +69,8 @@ def main():
         except Exception as e:
             print("ERROR in {0}: {1}".format(filename, e))
     all_mss = pd.concat(contents_frames, keys=ms_identifiers, names=["MS_ID"])
-    all_mss.to_csv('data/output/all_contents.csv', encoding="utf-8")
+    all_mss.to_csv('data/normalised/all_contents.csv', encoding="utf-8")
+
+
+if __name__ == '__main__':
+    main()
