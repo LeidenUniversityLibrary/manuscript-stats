@@ -28,7 +28,7 @@ To prevent interference with existing Python 3 installations, you should create 
 example creates a virtualenv in `~/virtualenvs/` called `manuscript-stats`:
 
 ```bash
-virtualenv ~/virtualenvs/manuscript-stats
+virtualenv ~/virtualenvs/manuscript-stats 
 source ~/virtualenvs/manuscript-stats/bin/activate
 ```
 
