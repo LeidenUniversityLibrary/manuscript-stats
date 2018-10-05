@@ -35,7 +35,7 @@ source ~/virtualenvs/manuscript-stats/bin/activate
 In your git tree, clone the repository and install the required dependencies:
 
 ```bash
-git clone https://github.com/LeidenUniversityLibraries/manuscript-stats.git
+git clone https://github.com/LeidenUniversityLibrary/manuscript-stats.git
 cd manuscript-stats/
 pip install -r requirements.txt
 ```
