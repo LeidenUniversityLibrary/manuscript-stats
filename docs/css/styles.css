@@ -2,14 +2,14 @@
 
 
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Helvetica', 'Arial', sans-serif;
     color: #2d2d2d;
     margin:20px;
     /*max-width:1050px;
     margin: 10px auto;*/ 
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Merriweather', serif;
+    font-family: 'Georgia', 'Times new Roman', serif;
 }
 
 p { 
