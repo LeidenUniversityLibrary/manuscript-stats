@@ -84,16 +84,25 @@ The script reads the files from `data/output/` and creates the Markdown files in
 In the development of these scripts, we encountered a few things about the input files that may require extra attention.
 
 - When you use Microsoft Excel to prepare the CSV files, make sure the files don't have empty lines.
-
 - Ranges of Roman numerals are handled by converting to their Arabic equivalents and adding 100000, so that the numbers don't
 clash with the folia numbered in Arabic ranges. This doesn't work when there are multiple ranges of Roman numerals, but in
 this dataset we are not aware of any.
-
 - Do not mix folio numbering (`1r`, `3v`) with pagination (`1`, `6`) in one file.
 
-## Author, licence
+## Author, license
 
-Created by Ben Companjen at the Centre for Digital Scholarship, Leiden University Libraries.
+Created by Ben Companjen at the [Centre for Digital Scholarship, Leiden University Libraries](https://www.library.universiteitleiden.nl/cds/).
 Copyright 2018, Leiden University Libraries.
 
-This project is not yet licenced.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
