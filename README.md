@@ -14,18 +14,20 @@ The included [Jupyter](https://jupyter.org/) notebook is the first proof of conc
 
 ## Character encodings
 
-This programme tries to auto-detect the input character encoding using the [`chardet`][chardet] library and writes output using the UTF-8 encoding.
+This programme tries to auto-detect the input character encoding using the [`chardet`][chardet] library and
+writes output using the UTF-8 encoding.
 
 [chardet]: https://github.com/chardet/chardet
 
 ## Installation
 
-The code doesn't need to be installed, other than downloaded to a suitable location. You may need to install dependencies.
+The code doesn't need to be installed, other than downloaded to a suitable location. You may need to install
+dependencies.
 
 ### Use Python 3 in a virtualenv
 
 To prevent interference with existing Python 3 installations, you should create a `virtualenv` for this project. This
-example creates a virtualenv in `~/virtualenvs/` called `manuscript-stats`:
+example creates a virtualenv in `~/virtualenvs/` called `manuscript-stats` and activates it:
 
 ```bash
 virtualenv ~/virtualenvs/manuscript-stats
